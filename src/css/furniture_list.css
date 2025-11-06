@@ -29,6 +29,8 @@
   gap: 16px;
   max-width: 100%;
 }
+.categories-item--active {
+}
 .category-item {
   width: calc((100% - 16px) / 2);
   border-radius: 8px;
