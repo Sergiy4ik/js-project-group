@@ -2,8 +2,6 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
-
-
 const modalWindow = document.querySelector('.modal-window');
 
 let escHandler = null;
