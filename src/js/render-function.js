@@ -1,16 +1,15 @@
 // Функції для відображення елементів інтерфейсу.
 import refs from './refs';
-import Accordion from "accordion-js";
-import "accordion-js/dist/accordion.min.css";
+import Accordion from 'accordion-js';
+import 'accordion-js/dist/accordion.min.css';
 
 export function renderCategories(arrey) {
   const categories = [{ _id: 'all', name: 'Всі товари' }, ...arrey];
-  console.log(categories);
 
   const murkup = categories
     .map(
       ({ _id, name: catName }) => `<li
-        class="category-item"
+        class="category-item" id="${_id}"
         style="
           background-image: image-set(
             url('/img/furniture/${_id}.png') 1x,
@@ -25,7 +24,7 @@ export function renderCategories(arrey) {
   refs.categories.innerHTML = murkup;
 }
 
-export function renderProducts(arrey) {
+export function renderFurnitures(arrey) {
   const markup = arrey
     .map(
       ({ _id, name, images, price, color }) => `<li class="product-item">
@@ -53,9 +52,9 @@ export function renderProducts(arrey) {
   refs.products.insertAdjacentHTML('beforeend', markup);
 }
 
-// export function clearProdutsList() {
-//   refs.products.innerHTML = '';
-// }
+export function clearFurnitures() {
+  refs.products.innerHTML = '';
+}
 
 new Accordion('.accordion-container', {
   duration: 300,

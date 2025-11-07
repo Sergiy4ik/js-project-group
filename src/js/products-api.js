@@ -9,7 +9,9 @@ import {
   FEEDBACK_PAGE,
   FEEDBACK_LIMIT,
 } from './constants.js';
+
 axios.defaults.baseURL = BASE_URL;
+
 // Functions for Furnitures
 export async function getFurnitures(
   params = { page: FURNITURE_PAGE, limit: FURNITURE_LIMIT }
@@ -18,6 +20,14 @@ export async function getFurnitures(
   const furnituresData = response.data;
   return furnituresData;
 }
+
+export async function getFurnituresByCategories(categoryId, currentPage) {
+  const { data } = await axios(
+    `${API_ENDPOINTS.FURNITURES}?page=${currentPage}&limit=${FURNITURE_LIMIT}&category=${categoryId}`
+  );
+  return data;
+}
+
 // Furniture by Id
 export async function getFurnitureByID(id) {
   const endpoint = getFurnitureByIdEndpoint(id);
@@ -25,13 +35,14 @@ export async function getFurnitureByID(id) {
   const furnitureItem = response.data;
   return furnitureItem; // один обєкт меблів
 }
+
 // Functions for Categories
 export async function getCategories() {
   const response = await axios.get(API_ENDPOINTS.CATEGORIES);
   const categoriesData = response.data;
-
   return categoriesData; // масив категорій
 }
+
 // Feedbacks
 export async function getFeedbacks(
   params = { page: FEEDBACK_PAGE, limit: FURNITURE_LIMIT }
@@ -40,6 +51,7 @@ export async function getFeedbacks(
   const feedbackData = response.data;
   return feedbackData;
 }
+
 // Orders
 export async function createOrder(orderData) {
   const response = await axios.post(API_ENDPOINTS.ORDERS, orderData);

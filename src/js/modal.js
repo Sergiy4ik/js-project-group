@@ -1,4 +1,4 @@
-import iziToast from "izitoast";
+import iziToast from 'izitoast';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
@@ -14,14 +14,16 @@ function stars(rate = 0) {
   let out = '';
   for (let i = 0; i < full; i++) out += '<span class="star star-full">★</span>';
   if (half) out += '<span class="star star-half">★</span>';
-  for (let i = full + half; i < 5; i++) out += '<span class="star star-empty">★</span>';
+  for (let i = full + half; i < 5; i++)
+    out += '<span class="star star-empty">★</span>';
   return out;
 }
 function normalizeImages(list) {
   const BASE = 'https://furniture-store-v2.b.goit.study';
-  return (list || []).map(src => (typeof src === 'string' && src.startsWith('http') ? src : `${BASE}${src}`));
+  return (list || []).map(src =>
+    typeof src === 'string' && src.startsWith('http') ? src : `${BASE}${src}`
+  );
 }
-
 
 function getRefs() {
   return {
@@ -39,7 +41,6 @@ function getRefs() {
     orderBtn: modalWindow.querySelector('.modalButton'),
   };
 }
-
 
 export async function openProductModal(id) {
   try {
@@ -66,7 +67,9 @@ export async function openProductModal(id) {
 
     // — гарантуємо картинки —
     const imgs = normalizeImages(data.images || data.image || []);
-    const safeImgs = imgs.length ? imgs : ['https://via.placeholder.com/640x360?text=No+Image'];
+    const safeImgs = imgs.length
+      ? imgs
+      : ['https://via.placeholder.com/640x360?text=No+Image'];
     const main = safeImgs[0];
     const thumbs = safeImgs.slice(1, 3);
 
@@ -77,10 +80,15 @@ export async function openProductModal(id) {
     }
     if (thumbsWrap) {
       thumbsWrap.innerHTML = thumbs
-        .map(src => `<img class="modal-thumb" src="${src}" alt="${data?.name || 'thumb'}">`)
+        .map(
+          src =>
+            `<img class="modal-thumb" src="${src}" alt="${
+              data?.name || 'thumb'
+            }">`
+        )
         .join('');
 
-      // делегування кліку по прев’ю 
+      // делегування кліку по прев’ю
       if (!thumbsWrap.dataset.bound) {
         thumbsWrap.addEventListener('click', e => {
           const img = e.target.closest('.modal-thumb');
@@ -104,7 +112,9 @@ export async function openProductModal(id) {
       colorsWrap.innerHTML = colors
         .map(
           (c, i) =>
-            `<label><input type="radio" name="color" value="${c}" ${i === 0 ? 'checked' : ''}><span class="color-circle" style="background:${c}"></span></label>`
+            `<label><input type="radio" name="color" value="${c}" ${
+              i === 0 ? 'checked' : ''
+            }><span class="color-circle" style="background:${c}"></span></label>`
         )
         .join('');
     }
@@ -128,7 +138,9 @@ export async function openProductModal(id) {
     // кнопка замовлення (якщо треба — кинемо подію, аби інший модуль відкрив форму)
     if (orderBtn) {
       orderBtn.onclick = () => {
-        const checked = modalWindow.querySelector('input[name="color"]:checked');
+        const checked = modalWindow.querySelector(
+          'input[name="color"]:checked'
+        );
         const color = checked ? checked.value : null;
         closeModal();
         document.dispatchEvent(
@@ -138,7 +150,6 @@ export async function openProductModal(id) {
         );
       };
     }
-
 
     if (dialog) {
       dialog.setAttribute('tabindex', '-1');
@@ -165,14 +176,11 @@ function closeModal() {
   }
 }
 
-
 /* ===== тестовий виклик (можна прибрати) =====
-*/
+ */
 // openProductModal('682f9bbf8acbdf505592ac45');
 
 // order-modal
-
-
 
 const backdropOrderModal = document.querySelector('.backdrop');
 const modalOrder = document.querySelector('.order-modal');
@@ -181,62 +189,63 @@ const submitBtn = document.querySelector('.modal-submit-btn');
 const orderForm = document.querySelector('.modal-order-form');
 
 function openOrderModal() {
-    backdropOrderModal.classList.add('is-open');
-    document.body.classList.add('modal-open');
+  backdropOrderModal.classList.add('is-open');
+  document.body.classList.add('modal-open');
 
-    window.addEventListener('keydown', handleEscape);
+  window.addEventListener('keydown', handleEscape);
 }
 
 function closeOrderModal() {
-    backdropOrderModal.classList.remove('is-open');
-    document.body.classList.remove('modal-open');
+  backdropOrderModal.classList.remove('is-open');
+  document.body.classList.remove('modal-open');
 
-    window.removeEventListener('keydown', handleEscape);
+  window.removeEventListener('keydown', handleEscape);
 }
 
 closeOrderBtn.addEventListener('click', closeOrderModal);
 
-backdropOrderModal.addEventListener('click', (event) => {
-    if (event.target === backdropOrderModal) {
-        closeOrderModal();
-    }
+backdropOrderModal.addEventListener('click', event => {
+  if (event.target === backdropOrderModal) {
+    closeOrderModal();
+  }
 });
 
 function handleEscape(event) {
-    if (event.key === 'Escape' || event.key === 'Esc') {
-        closeOrderModal();
-    }
+  if (event.key === 'Escape' || event.key === 'Esc') {
+    closeOrderModal();
+  }
 }
 
-orderForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+orderForm.addEventListener('submit', event => {
+  event.preventDefault();
 
-    const name = orderForm.elements['user-name'].value.trim();
-    const phone = orderForm.elements['phone'].value.trim();
-    const comment = orderForm.elements['user-comment'].value.trim();
+  const name = orderForm.elements['user-name'].value.trim();
+  const phone = orderForm.elements['phone'].value.trim();
+  const comment = orderForm.elements['user-comment'].value.trim();
 
-    if (!name || !phone) {
-        iziToast.warning({
-            title: "Ooops!",
-            message: "Будь ласка, заповніть всі обов'язкові поля!",
-            position: "topRight",
-        });
-        return;
-    }
+  if (!name || !phone) {
+    iziToast.warning({
+      title: 'Ooops!',
+      message: "Будь ласка, заповніть всі обов'язкові поля!",
+      position: 'topRight',
+    });
+    return;
+  }
 
-    const clearPhone = phone.replace(/[^\d+]/g, '');
-    const phonePattern = /^\+?\d{10,15}$/;
+  const clearPhone = phone.replace(/[^\d+]/g, '');
+  const phonePattern = /^\+?\d{10,15}$/;
 
-    if (!phonePattern.test(clearPhone)) {
-        iziToast.warning({
-            title: "Ooops!",
-            message: "Будь ласка, введіть коректний номер телефону",
-            position: "topRight",
-        });
-        return;
-    }
-    
-})
+  if (!phonePattern.test(clearPhone)) {
+    iziToast.warning({
+      title: 'Ooops!',
+      message: 'Будь ласка, введіть коректний номер телефону',
+      position: 'topRight',
+    });
+    return;
+  }
+});
 
 // тестова кнопка для відкриття модалки
-document.querySelector('.open-modal-btn')?.addEventListener('click', openOrderModal);
+document
+  .querySelector('.open-modal-btn')
+  ?.addEventListener('click', openOrderModal);
