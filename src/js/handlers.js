@@ -1,6 +1,5 @@
 // Хендлери, які передаються в addEventListener.
 
-import { getCategories } from './products-api';
 import { renderCategories, renderProducts } from './render-function';
 import {
   getFurnitures,
