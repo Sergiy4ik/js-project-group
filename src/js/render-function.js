@@ -12,8 +12,8 @@ export function renderCategories(arrey) {
         class="category-item" id="${_id}"
         style="
           background-image: image-set(
-            url('/img/furniture/${_id}.png') 1x,
-            url('/img/furniture/${_id}@2x.png') 2x
+            url('img/furniture/${_id}.png') 1x,
+            url('img/furniture/${_id}@2x.png') 2x
           );
         "
       >
