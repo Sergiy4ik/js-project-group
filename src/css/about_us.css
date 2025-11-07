@@ -1,0 +1,31 @@
+
+.about-container{
+display: inline-flex;
+align-items: center;
+justify-content: space-between;
+padding: 64px;
+gap: 24px;
+ 
+}
+
+.about-title{
+font-weight: 700;
+font-size: 48px;
+line-height: 1.2;
+letter-spacing: 0.01em;
+color: #080c09;
+margin-bottom: 20px;
+}
+.about-text{
+font-weight: 400;
+font-size: 18px;
+line-height: 1.6;
+color: #080c09;
+}
+
+.about-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
