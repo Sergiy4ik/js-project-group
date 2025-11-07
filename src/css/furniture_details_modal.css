@@ -1,0 +1,309 @@
+/* Візуально приховано */
+
+.visuallyhidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden
+}
+
+/* Бекдроп */
+.modal-window {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .5);
+    z-index: 1000;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .25s cubic-bezier(.4, 0, .2, 1), visibility .25s cubic-bezier(.4, 0, .2, 1);
+}
+
+.modal-window.visuallyhidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none
+}
+
+.modal-window.visuallyhidden .product-modalWindow {
+    transform: scale(1.04)
+}
+
+/* Вікно */
+.product-modalWindow {
+    position: relative;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: flex-start;
+    background: #fff;
+    border-radius: 8px;
+    padding: 64px;
+    width: 1090px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+    transform: scale(1);
+    transition: transform .25s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Кнопка закриття */
+.modal-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.4, 0, .2, 1)
+}
+
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+    transform: rotate(90deg)
+}
+
+/* Колонки */
+.modal-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-shrink: 0
+}
+
+.modal-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px
+}
+
+/* Галерея */
+.modal-image-0 {
+    width: 100%;
+    height: 308px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: opacity .3s
+}
+
+.modal-bottom-row {
+    
+    display: flex;
+    gap: 16px
+}
+
+.modal-thumb {
+    width: 282px;
+    height: 197px;
+    border-radius: 8px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: box-shadow .2s, transform .2s, opacity .3s
+}
+
+.modal-thumb:hover {
+    box-shadow: 0 0 8px #6b0609;
+    transform: scale(1.05);
+    opacity: .9
+}
+
+/* Тексти / ціна */
+.product-modal-title {
+font-weight: 700;
+font-size: 40px
+}
+
+.modal-description {
+    font-size: 14px;
+    color: #666
+}
+
+.modal-price {
+    font-weight: 700;
+    font-size: 20px;
+    color: #080c09
+}
+
+/* Рейтинг */
+.modal-rating-stars {
+    display: flex;
+    gap: 4px;
+    margin: 4px 0 8px
+}
+
+.star {
+    font-size: 19px;
+    line-height: 1;
+    color: #e0e0e0;
+    -webkit-text-stroke: 1px #080c09
+}
+
+.star-full {
+    color: #080c09
+}
+
+.star-half {
+    background: linear-gradient(90deg, #080c09 50%, #e0e0e0 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text
+}
+
+.star-empty {
+    color: #e0e0e0
+}
+
+/* Кольори */
+.color-options {
+    margin: 8px 0 8px
+}
+
+.color-label {
+    font-weight: 600;
+    margin-bottom: 8px
+}
+
+.radio-group {
+    display: flex;
+    gap: 8px
+}
+
+.radio-group label {
+    position: relative;
+    display: inline-block
+}
+
+.radio-group input {
+    position: absolute;
+    opacity: 0
+}
+
+.color-circle {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: border-color .2s
+}
+
+.radio-group input:checked+.color-circle {
+    border-color: #6b0609
+}
+
+/* Опис / розміри */
+.furnitureDescription {
+    font-size: 14px;
+    line-height: 1.45;
+    color: #444
+}
+
+.furnitureSize {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+/* Кнопка */
+.modalButton {
+    background: #6b0609;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity .25s, transform .2s
+}
+
+.modalButton:hover,
+.modalButton:focus {
+    opacity: .85;
+    transform: translateY(-1px);
+    background: color-madang;
+    opacity: 0.5
+}
+
+/* Мобільна */
+@media (max-width:767px) {
+    .product-modalWindow {
+        flex-direction: column;
+        padding: 64px 16px;
+        width: 90vw;
+        max-width: 343px
+    }
+    .modal-title {
+        font-size: 32px;
+        font-weight: 700;
+    }
+    .modal-left,
+    .modal-right {
+        width: 100%;
+        gap: 16px
+    }
+
+    .modal-thumb {
+        width: 48%;
+        max-width: 160px;
+        height: auto;
+        aspect-ratio: 282/197
+    }
+
+    .modal-bottom-row {
+        justify-content: center;
+        height: 197px;
+        width: 100%;
+    }
+
+    .modal-close-btn {
+        top: 16px;
+        right: 16px;
+        width: 14px;
+        height: 14px
+    }
+}
+
+/* Планшет */
+@media (min-width:768px) and (max-width:1439px) {
+    .product-modalWindow {
+        flex-direction: column;
+        padding: 64px 0px;
+        width: 704px
+    }
+    .modal-left{
+        
+    }
+    .modal-bottom-row {
+        height: 197px;
+        width: 650px;
+    }
+    .modal-title {
+        font-size: 32px;
+    }
+    .modal-image-0 {
+        width: 100%;
+        max-width: 640px;
+        height: auto;
+        aspect-ratio: 640/297
+    }
+
+    .modal-thumb {
+        width: 48%;
+        max-width: 312px;
+        height: auto;
+        aspect-ratio: 312/197
+    }
+}
+
