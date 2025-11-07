@@ -1,0 +1,119 @@
+.furniture-list {
+  background: #fff;
+}
+.furniture-list .container {
+  padding: 48px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+}
+.furniture-list-title {
+  font: 700 36px / 1.2 'Raleway', sans-serif;
+  letter-spacing: 0.01em;
+  color: #080c09;
+}
+.furniture-list-description {
+  font: 400 18px / 1.6 'Raleway', sans-serif;
+  color: #080c09;
+}
+.furniture-list-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 100%;
+}
+.categories-item--active {
+}
+.category-item {
+  width: calc((100% - 16px) / 2);
+  border-radius: 8px;
+  height: 122px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  align-content: center;
+  font: 700 18px / 1.4 'Raleway', sans-serif;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #fff;
+}
+.furniture-list-products {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+.product-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.products-image {
+  border-radius: 8px;
+  width: 310px;
+  height: 256px;
+}
+.product-description-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: start;
+}
+.products-title {
+  font: 600 18px / 1.6 'Raleway', sans-serif;
+  color: #080c09;
+  padding: 0;
+  margin: 0;
+}
+.products-color-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: start;
+}
+.products-color-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+.products-price {
+  font: 600 20px / 1.6 'Raleway', sans-serif;
+  color: #080c09;
+  padding: 0;
+  margin: 0;
+}
+.products-details-btn {
+  font: 500 16px / 1.6 'Raleway', sans-serif;
+  color: #080c09;
+  border-radius: 100px;
+  border: none;
+  width: 310px;
+  height: 46px;
+  box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05),
+    inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+  background: rgba(8, 12, 9, 0.05);
+}
+
+@media only screen and (min-width: 768px) {
+  .furniture-list .container {
+    padding: 48px 32px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .furniture-list .container {
+    padding: 80px 64px;
+  }
+}
