@@ -1,3 +1,5 @@
+import './css/furniture_details_modal.css';
+import './js/modal.js';
 // Логіка сторінки index.html
 import { FURNITURE_LIMIT, FURNITURE_PAGE } from './js/constants.js';
 import { loadFurnitures } from './js/handlers.js';
@@ -13,4 +15,5 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 import './js/render-function.js';
+
 import './js/modal.js';
