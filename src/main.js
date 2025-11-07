@@ -7,3 +7,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 import './js/render-function.js';
+import './js/modal.js';
