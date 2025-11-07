@@ -1,4 +1,4 @@
-
+import iziToast from "izitoast";
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
@@ -169,7 +169,6 @@ function closeModal() {
 /* ===== тестовий виклик (можна прибрати) =====
 */
 // openProductModal('682f9bbf8acbdf505592ac45');
-import iziToast from "izitoast";
 
 // order-modal
 
