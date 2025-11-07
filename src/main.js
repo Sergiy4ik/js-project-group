@@ -1,7 +1,13 @@
 // Логіка сторінки index.html
+import { FURNITURE_LIMIT, FURNITURE_PAGE } from './js/constants.js';
 import { loadFurnitures } from './js/handlers.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log(' Перевірка API...');
-  const furnitures = await loadFurnitures({ page: 1, limit: 8 });
+  console.log('Перевірка API...');
+  // testing furnitures
+  const furnitures = await loadFurnitures({
+    page: FURNITURE_PAGE,
+    limit: FURNITURE_LIMIT,
+  });
   console.log('Меблі:', furnitures);
 });
