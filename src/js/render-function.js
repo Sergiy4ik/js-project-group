@@ -25,7 +25,13 @@ export function renderCategories(arrey) {
 export function renderFurnitures(arrey) {
   const markup = arrey
     .map(
-      ({ _id, name, images, price, color }) => `<li class="product-item">
+      ({
+        _id,
+        name,
+        images,
+        price,
+        color,
+      }) => `<li class="product-item" data-id="${_id}">
         <img
           class="products-image"
           src='${images[0]}'
