@@ -1,0 +1,132 @@
+    /* Mobile screen start */
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        background-color: #6b0609;
+    }
+
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+    }
+
+    .footer-descr {
+        line-height: 160%;
+        font-size: 14px;
+        color: #fff;
+        padding: 0 32px;
+        position: relative;
+        top: 278px;
+    }
+
+    .footer-nav {
+        font-size: 16px;
+        line-height: 160%;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+
+    .footer-nav-link {
+        position: relative;
+        padding-bottom: 1px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: #fff;
+        transition: width 250ms ease-in-out;
+    }
+
+    .footer-nav-link:hover::after {
+        width: 100%;
+    }
+
+    .footer-nav-link:focus::after {
+        width: 100%;
+    }
+
+    .social-media-list {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 74px;
+    }
+
+    /* Mobile screen end */
+
+    /* Tabtel screen start */
+
+    @media (min-width: 768px) {
+
+        .footer-nav {
+            flex-direction: row;
+            gap: 32px;
+        }
+
+        .footer-descr {
+            top: 124px;
+        }
+
+        .footer .container {
+            margin-bottom: 0;
+        }
+
+        .social-media-list {
+            margin-bottom: 74px;
+        }
+    }
+
+    /* Tabtel screen end */
+
+    /* Desktop screen start */
+
+    @media (min-width: 1200px) {
+
+        .footer {
+            height: 98px;
+        }
+
+        .footer .container {
+            flex-direction: row;
+        }
+
+        .footer-logo {
+            margin: 0;
+        }
+
+        .footer-descr {
+            position: unset;
+            margin: 0 80px;
+        }
+
+        .footer-nav {
+            margin: 0 80px 0 0;
+        }
+
+        .social-media-list {
+            margin: 0;
+        }
+    }
+
+    /* Desktop screen end */
