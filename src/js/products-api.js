@@ -44,7 +44,7 @@ export async function getCategories() {
 
 // Feedbacks
 export async function getFeedbacks(
-  params = { page: FEEDBACK_PAGE, limit: FURNITURE_LIMIT }
+  params = { page: FEEDBACK_PAGE, limit: FEEDBACK_LIMIT }
 ) {
   const response = await axios.get(API_ENDPOINTS.FEEDBACKS, { params });
   const feedbackData = response.data;
