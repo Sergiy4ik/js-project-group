@@ -2,6 +2,7 @@
 import refs from './refs';
 import Accordion from 'accordion-js';
 import 'accordion-js/dist/accordion.min.css';
+import '../css/faq.css';
 
 export function renderCategories(arrey) {
   const categories = [{ _id: 'all', name: 'Всі товари' }, ...arrey];
@@ -54,7 +55,9 @@ export function clearFurnitures() {
   refs.products.innerHTML = '';
 }
 
-new Accordion('.accordion-container', {
-  duration: 300,
-  showMultiple: false,
-});
+
+    new Accordion('.accordion-container', {
+      duration: 300,
+      showMultiple: false,
+    });
+  
