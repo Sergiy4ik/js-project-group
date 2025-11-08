@@ -13,12 +13,11 @@ import {
 axios.defaults.baseURL = BASE_URL;
 
 // Functions for Furnitures
-export async function getFurnitures(
-  params = { page: FURNITURE_PAGE, limit: FURNITURE_LIMIT }
-) {
-  const response = await axios.get(API_ENDPOINTS.FURNITURES, { params });
-  const furnituresData = response.data;
-  return furnituresData;
+export async function getFurnitures(currentPage = 1) {
+  const { data } = await axios(
+    `${API_ENDPOINTS.FURNITURES}?page=${currentPage}&limit=${FURNITURE_LIMIT}`
+  );
+  return data;
 }
 
 export async function getFurnituresByCategories(categoryId, currentPage) {

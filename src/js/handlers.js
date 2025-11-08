@@ -22,6 +22,7 @@ import {
 } from './constants.js';
 import refs from './refs.js';
 import { hideLoadMoreBtn, showLoadMoreBtn } from './helpers.js';
+
 let currentPage = 1;
 let currentCategory = '';
 
@@ -61,20 +62,69 @@ export async function handlerClickCategory(event) {
   item.classList.add('categories-item--active');
   currentPage = 1;
   currentCategory = item.id;
-  console.log(currentCategory);
 
-  // // showLoader();
+  // showLoader();
   try {
     if (currentCategory === 'all') {
       const { furnitures } = await getFurnitures();
       renderFurnitures(furnitures);
       showLoadMoreBtn();
     } else {
-      const { furnitures } = await getFurnituresByCategories(
+      const { furnitures, totalItems } = await getFurnituresByCategories(
         currentCategory,
         currentPage
       );
+      if (!furnitures.length) {
+        hideLoadMoreBtn();
+        // showInfo('Not found');
+        return;
+      } else {
+        if (totalItems < FURNITURE_LIMIT) {
+          hideLoadMoreBtn();
+          // showInfo('End collections');
+        }
+        renderFurnitures(furnitures);
+      }
+    }
+  } catch (error) {
+    // showError(error);
+  } finally {
+    // hideLoader();
+  }
+}
+
+export async function onLoadMoreClick(event) {
+  event.preventDefault();
+  currentPage++;
+  // showLoader();
+
+  try {
+    if (currentCategory === 'all') {
+      const { furnitures, totalItems } = await getFurnitures(currentPage);
+      if (totalItems < FURNITURE_LIMIT * currentPage) {
+        hideLoadMoreBtn();
+        // showInfo('End collections');
+      } else {
+        showLoadMoreBtn();
+      }
       renderFurnitures(furnitures);
+    } else {
+      const { furnitures, totalItems } = await getFurnituresByCategories(
+        currentCategory,
+        currentPage
+      );
+
+      if (!furnitures.length) {
+        hideLoadMoreBtn();
+        // showInfo('Not found');
+        return;
+      } else {
+        if (totalItems < FURNITURE_LIMIT) {
+          hideLoadMoreBtn();
+          // showInfo('End collections');
+        }
+        renderFurnitures(furnitures);
+      }
     }
   } catch (error) {
     // showError(error);

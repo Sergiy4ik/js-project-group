@@ -39,15 +39,23 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.categories-item--active {
+  border: 8px solid #6b0609;
+}
+.categories-btn {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  border: none;
+  color: #fff;
   text-align: center;
   align-content: center;
   font: 700 18px / 1.4 'Raleway', sans-serif;
   letter-spacing: 0.01em;
-  text-align: center;
-  color: #fff;
 }
-.categories-item--active {
-  border: 8px solid #6b0609;
+.category-btn:hover {
+  pointer-events: none;
 }
 
 .furniture-list-products {
