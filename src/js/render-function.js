@@ -12,8 +12,8 @@ export function renderCategories(arrey) {
         class="category-item" id="${_id}"
         style="
           background-image: image-set(
-            url('/furniture-bg/${_id}.png') 1x,
-            url('/furniture-bg/${_id}@2x.png') 2x
+            url('./furniture-bg/${_id}.png') 1x,
+            url('./furniture-bg/${_id}@2x.png') 2x
           );
         "
       ><button class="categories-btn" type="button">${catName}</button></li>`
