@@ -133,12 +133,14 @@ export async function onLoadMoreClick(event) {
   }
 }
 
-// // furniture
+// Додаткові функції для роботи з API (закоментовані, якщо не використовуються)
+// Якщо потрібно використовувати, розкоментуйте та виправте виклики функцій
+
 // export async function loadFurnitures(
 //   params = { page: FURNITURE_PAGE, limit: FURNITURE_LIMIT }
 // ) {
 //   try {
-//     const data = await getFurnitures(params);
+//     const data = await getFurnitures(params.page || FURNITURE_PAGE);
 //     console.log('Furnitures:', data);
 //     return data;
 //   } catch (error) {
@@ -146,9 +148,10 @@ export async function onLoadMoreClick(event) {
 //     return null;
 //   }
 // }
+
 // export async function loadFurnitureById(id) {
 //   try {
-//     const data = await loadFurnitureById(id);
+//     const data = await getFurnitureByID(id);
 //     console.log('Furniture details:', data);
 //     return data;
 //   } catch (error) {
@@ -156,9 +159,10 @@ export async function onLoadMoreClick(event) {
 //     return null;
 //   }
 // }
+
 // export async function loadCategories() {
 //   try {
-//     const data = await loadCategories();
+//     const data = await getCategories();
 //     console.log('Categories:', data);
 //     return data;
 //   } catch (error) {
@@ -166,11 +170,14 @@ export async function onLoadMoreClick(event) {
 //     return null;
 //   }
 // }
+
+// Примітка: Функція loadFeedbacks реалізована в feedback.js
+// Використовуйте initFeedbacks() з feedback.js для завантаження відгуків
 // export async function loadFeedbacks(
 //   params = { page: FEEDBACK_PAGE, limit: FEEDBACK_LIMIT }
 // ) {
 //   try {
-//     const data = await loadFeedbacks(params);
+//     const data = await getFeedbacks(params);
 //     console.log('Feedbacks', data);
 //     return data;
 //   } catch (error) {
@@ -178,9 +185,9 @@ export async function onLoadMoreClick(event) {
 //     return null;
 //   }
 // }
-// export async function sendOrder() {
+// export async function sendOrder(orderData) {
 //   try {
-//     const data = await sendOrder();
+//     const data = await createOrder(orderData);
 //     console.log('Order created:', data);
 //     return data;
 //   } catch (error) {

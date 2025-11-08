@@ -11,6 +11,8 @@ const refs = {
   feedbackCardList: document.querySelector('.feedback-card-list'),
   feedbackNavPrev: document.querySelector('.feedback-nav-prev'),
   feedbackNavNext: document.querySelector('.feedback-nav-next'),
+  feedbackPaginationDots: document.querySelector('.feedback-pagination-dots'),
+  feedbackSwiper: document.querySelector('.feedback-swiper'),
 };
 
 export default refs;
