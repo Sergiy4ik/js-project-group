@@ -6,6 +6,7 @@ const refs = {
   modal: document.querySelector('.modal'),
   modalProduct: document.querySelector('.modal-product'),
   loadMoreBtn: document.querySelector('.load-more-btn'),
+  colorBox: document.querySelector('.products-color-list'),
   loader: document.querySelector('.loader'),
   feedbackCardList: document.querySelector('.feedback-card-list'),
   feedbackNavPrev: document.querySelector('.feedback-nav-prev'),
