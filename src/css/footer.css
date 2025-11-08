@@ -66,6 +66,7 @@
     .social-media-list {
         display: flex;
         gap: 24px;
+        margin-bottom: 74px;
     }
 
     /* Mobile screen end */
