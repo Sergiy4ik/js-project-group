@@ -1,0 +1,49 @@
+.herobaner {
+    display: flex;
+    width: 1440px;
+    height: 100%;
+    background-image: url("../public/hero_vel.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.herobaner-title {
+    padding: 0;
+    width: 560px;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 120%;
+    letter-spacing: 0.01em;
+    margin-bottom: 24px;
+}
+
+.herobaner-text {
+    width: 560px;
+    height: 87px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+    font-family: "Raleway", sans-serif;
+    margin-bottom: 32px;
+    opacity: 0.7;
+}
+
+.btn-hero {
+    border-radius: 100px;
+    padding: 10px 24px;
+    width: 209px;
+    height: 46px;
+    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 var(--opacity-white-5);
+    background-color: #6B0609;
+    text-decoration: none;
+
+}
+.btn-hero-text {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    text-align: center;
+}

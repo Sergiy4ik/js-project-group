@@ -2,7 +2,7 @@
 
 export const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 export const API_ENDPOINTS = {
-  FURNITURES: '/furnitures/',
+  FURNITURES: '/furnitures',
   CATEGORIES: '/categories',
   FEEDBACKS: '/feedbacks',
   ORDERS: '/orders',
