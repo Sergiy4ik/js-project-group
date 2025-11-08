@@ -34,12 +34,12 @@ export function renderFurnitures(arrey) {
         <div class="product-description-box">
           <h4 class="products-title">${name}</h4>
           <ul class="products-color-list">
-            <li class="products-color-box" style="background-color: ${color[0]}"></li>
-            <li class="products-color-box" style="background-color: ${color[1]}"></li>
-            <li
-              class="products-color-box"
-              style="background-color: ${color[2]}"
-            ></li>
+            ${color
+              .map(
+                hex =>
+                  `<li class="products-color-box" style="background-color: ${hex}"></li>`
+              )
+              .join('')}
           </ul>
           <p class="products-price">${price} грн</p>
         </div>
