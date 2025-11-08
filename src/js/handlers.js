@@ -133,6 +133,36 @@ export async function onLoadMoreClick(event) {
   }
 }
 
+import { openProductModal } from './modal.js';
+
+
+export const onProductsClick = e => {
+  const btn = e.target.closest('.products-details-btn'); 
+  if (!btn) return;
+
+  const card = btn.closest('.product-item');
+  if (!card) return;
+
+  let id = card.dataset.id;
+
+
+  if (!id) {
+    const img = card.querySelector('img[src*="/furniture/"]');
+    const src = img?.getAttribute('src') || '';
+    const m = src.match(/\/([a-f0-9]{24})_/i);
+    if (m) id = m[1];
+  }
+
+  if (!id) {
+    console.warn('Не знайдено id товару для модалки');
+    return;
+  }
+
+  e.preventDefault();
+  openProductModal(id);
+};
+
+
 // // furniture
 // export async function loadFurnitures(
 //   params = { page: FURNITURE_PAGE, limit: FURNITURE_LIMIT }
