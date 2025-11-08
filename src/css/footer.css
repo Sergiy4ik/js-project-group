@@ -1,5 +1,9 @@
     /* Mobile screen start */
 
+    html {
+        scroll-behavior: smooth;
+    }
+
     .footer {
         display: flex;
         align-items: center;
@@ -66,6 +70,7 @@
     .social-media-list {
         display: flex;
         gap: 24px;
+        margin-bottom: 74px;
     }
 
     /* Mobile screen end */
@@ -87,6 +92,9 @@
             margin-bottom: 0;
         }
 
+        .social-media-list {
+            margin-bottom: 74px;
+        }
     }
 
     /* Tabtel screen end */
