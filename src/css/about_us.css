@@ -1,5 +1,6 @@
 .about-us {
   background: #f0e6e6;
+  padding: 64px 20px;
 }
 
 /* -------- БАЗОВА ВЕРСІЯ (mobile-first, гумова до 375px) -------- */
@@ -50,7 +51,6 @@
 /* -------- TABLET (з 768px) -------- */
 @media screen and (min-width: 768px) {
   .about-container {
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 32px 32px;
@@ -72,6 +72,7 @@
   .about-container {
     padding: 64px;
     gap: 24px;  
+    flex-direction: row;
   }
 
   .about-title {
