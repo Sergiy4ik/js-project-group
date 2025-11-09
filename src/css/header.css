@@ -138,6 +138,11 @@
     .header .nav-list-item:hover::after {
         width: 100%;
     }
+
+    .burger-menu-navbar-btn-close svg{
+      display: none;
+    }
+    
 }
 /* .header {
   padding: 16px 0;
