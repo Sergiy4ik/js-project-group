@@ -66,18 +66,16 @@ export function clearFurnitures() {
 new Accordion('.accordion-container', {
   duration: 300,
   showMultiple: false,
-  beforeOpen: (currElement) => {
+  beforeOpen: currElement => {
     const arrow = currElement.querySelector('.ac-icon');
     if (arrow) arrow.style.transform = 'rotate(180deg)';
   },
 
-  beforeClose: (currElement) => {
+  beforeClose: currElement => {
     const arrow = currElement.querySelector('.ac-icon');
     if (arrow) arrow.style.transform = 'rotate(0deg)';
-  }
+  },
 });
-
-
 
 // Функція для створення розмітки картки відгуку
 export function createFeedbackCardMarkup(feedback) {
@@ -98,11 +96,14 @@ export function renderFeedbacks(feedbacks) {
   if (!refs.feedbackCardList) {
     return;
   }
-  
-  const markup = feedbacks.map(feedback => createFeedbackCardMarkup(feedback)).join('');
+
+  const markup = feedbacks
+    .map(feedback => createFeedbackCardMarkup(feedback))
+    .join('');
   refs.feedbackCardList.innerHTML = markup;
 
-  const ratingElements = refs.feedbackCardList.querySelectorAll('.feedback-rating');
+  const ratingElements =
+    refs.feedbackCardList.querySelectorAll('.feedback-rating');
 
   ratingElements.forEach(container => {
     const score = Number(container.dataset.score) || 0;
@@ -125,4 +126,3 @@ export function renderFeedbacks(feedbacks) {
     ratyInstance.init();
   });
 }
-
