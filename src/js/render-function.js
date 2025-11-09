@@ -65,7 +65,17 @@ export function clearFurnitures() {
 new Accordion('.accordion-container', {
   duration: 300,
   showMultiple: false,
+  beforeOpen: (currElement) => {
+    const arrow = currElement.querySelector('.ac-icon');
+    if (arrow) arrow.style.transform = 'rotate(180deg)';
+  },
+
+  beforeClose: (currElement) => {
+    const arrow = currElement.querySelector('.ac-icon');
+    if (arrow) arrow.style.transform = 'rotate(0deg)';
+  }
 });
+
 
 
 // Функція для створення розмітки картки відгуку
