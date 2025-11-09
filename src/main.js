@@ -4,7 +4,8 @@ import {
   handlerClickCategory,
   initialHome,
   onLoadMoreClick,
-} from './js/handlers';
+  onProductsClick,
+} from './js/handlers.js';
 import { initFeedbacks } from './js/feedback.js';
 import refs from './js/refs';
 
@@ -13,12 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeedbacks();
 });
 
-
 refs.categories.addEventListener('click', handlerClickCategory);
 refs.loadMoreBtn.addEventListener('click', onLoadMoreClick);
-  onProductsClick, // 
-} from './js/handlers.js';
-
+  
 window.addEventListener('load', () => {
   requestAnimationFrame(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
