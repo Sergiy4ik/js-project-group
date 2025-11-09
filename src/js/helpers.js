@@ -13,7 +13,6 @@ export function hideLoadMoreBtn() {
   refs.loadMoreBtn.classList.remove('is-show');
 }
 
-
 export function roundRating(rating) {
   if (rating < 1 || rating > 5) {
     return rating;
@@ -26,14 +25,13 @@ export function roundRating(rating) {
     return 4;
   }
 
-
   return Math.round(rating * 2) / 2;
-};
+}
 
 iziToast.settings({
-  position: "topRight",
-  displayMode: "replace"
-})
+  position: 'topRight',
+  displayMode: 'replace',
+});
 
 export function showInfo(message) {
   iziToast.info({
@@ -44,25 +42,25 @@ export function showInfo(message) {
 export function showSuccess(message) {
   iziToast.success({
     message: message,
-  })
+  });
 }
 
 export function showWarning(message) {
   iziToast.warning({
     message: message,
-  })
+  });
 }
 
 export function showError(message) {
   iziToast.error({
-    message: message
-  })
+    message: message,
+  });
 }
 
 export function showLoader() {
-  refs.loader.classList.remove("hidden")
+  refs.loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-  refs.loader.classList.add("hidden")
+  refs.loader.classList.add('hidden');
 }

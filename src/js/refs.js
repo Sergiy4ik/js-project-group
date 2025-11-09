@@ -13,7 +13,7 @@ const refs = {
   feedbackNavNext: document.querySelector('.feedback-nav-next'),
   feedbackPaginationDots: document.querySelector('.feedback-pagination-dots'),
   feedbackSwiper: document.querySelector('.feedback-swiper'),
-  loader: document.querySelector('.loader')
+  loader: document.querySelector('.backdrope-loader'),
 };
 
 export default refs;

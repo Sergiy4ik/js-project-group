@@ -21,13 +21,20 @@ import {
   FEEDBACK_LIMIT,
 } from './constants.js';
 import refs from './refs.js';
-import { hideLoadMoreBtn, showLoadMoreBtn } from './helpers.js';
+import {
+  hideLoader,
+  hideLoadMoreBtn,
+  showLoader,
+  showLoadMoreBtn,
+} from './helpers.js';
 
 let currentPage = 1;
 let currentCategory = '';
 
 export async function initialHome() {
   try {
+    showLoader();
+
     const categories = await getCategories();
     renderCategories(categories);
 
@@ -35,14 +42,13 @@ export async function initialHome() {
     const allCategoryItem = refs.categories.children[0];
     allCategoryItem.classList.add('categories-item--active');
 
-    // showLoader();
     const { furnitures } = await getFurnitures();
     renderFurnitures(furnitures);
     showLoadMoreBtn();
   } catch (error) {
-    // showError(error);
+    showError(error);
   } finally {
-    // hideLoader();
+    hideLoader();
   }
 }
 
@@ -63,7 +69,7 @@ export async function handlerClickCategory(event) {
   currentPage = 1;
   currentCategory = item.id;
 
-  // showLoader();
+  showLoader();
   try {
     if (currentCategory === 'all') {
       const { furnitures } = await getFurnitures();
@@ -76,34 +82,34 @@ export async function handlerClickCategory(event) {
       );
       if (!furnitures.length) {
         hideLoadMoreBtn();
-        // showInfo('Not found');
+        showInfo('Not found');
         return;
       } else {
         if (totalItems < FURNITURE_LIMIT) {
           hideLoadMoreBtn();
-          // showInfo('End collections');
+          showInfo('End collections');
         }
         renderFurnitures(furnitures);
       }
     }
   } catch (error) {
-    // showError(error);
+    showError(error);
   } finally {
-    // hideLoader();
+    hideLoader();
   }
 }
 
 export async function onLoadMoreClick(event) {
   event.preventDefault();
   currentPage++;
-  // showLoader();
+  showLoader();
 
   try {
     if (currentCategory === 'all') {
       const { furnitures, totalItems } = await getFurnitures(currentPage);
       if (totalItems < FURNITURE_LIMIT * currentPage) {
         hideLoadMoreBtn();
-        // showInfo('End collections');
+        showInfo('End collections');
       } else {
         showLoadMoreBtn();
       }
@@ -116,35 +122,33 @@ export async function onLoadMoreClick(event) {
 
       if (!furnitures.length) {
         hideLoadMoreBtn();
-        // showInfo('Not found');
+        showInfo('Not found');
         return;
       } else {
         if (totalItems < FURNITURE_LIMIT) {
           hideLoadMoreBtn();
-          // showInfo('End collections');
+          showInfo('End collections');
         }
         renderFurnitures(furnitures);
       }
     }
   } catch (error) {
-    // showError(error);
+    showError(error);
   } finally {
-    // hideLoader();
+    hideLoader();
   }
 }
 
 import { openProductModal } from './modal.js';
 
-
 export const onProductsClick = e => {
-  const btn = e.target.closest('.products-details-btn'); 
+  const btn = e.target.closest('.products-details-btn');
   if (!btn) return;
 
   const card = btn.closest('.product-item');
   if (!card) return;
 
   let id = card.dataset.id;
-
 
   if (!id) {
     const img = card.querySelector('img[src*="/furniture/"]');
@@ -161,7 +165,6 @@ export const onProductsClick = e => {
   e.preventDefault();
   openProductModal(id);
 };
-
 
 // // furniture
 // export async function loadFurnitures(
