@@ -1,32 +1,34 @@
 <header class="header">
-  <div class="container">
+  <div class="container header-container">
     <nav class="header-nav">
       <a href="./index.html" class="logo">
-        <svg class="burger-icon" width="24" height="24">
-          <!-- <use href="./images/icons.svg#icon-burger-btn">   -->
-          <use href="./public/favicon.svg"></use>
+        <svg class="site-icon" width="163" height="70">
+          <use href="/img/sprite.svg#company-logo-black">
         </svg>
-        Меблерія
       </a>
-      <ul class="nav-list">
-        <li class="nav-list-item">
-          <a href="/" class="nav-link">Наші меблі</a>
-        </li>
-        <li class="nav-list-item">
-          <a href="/about" class="nav-link">Про нас</a>
-        </li>
-        <li class="nav-list-item">
-          <a href="/contact" class="nav-link">Часті питання</a>
-        </li>
-        <li class="nav-list-item">
-          <a href="/contact" class="nav-link">Відгуки</a>
-        </li>
-      </ul>
-      <button href="#" type="button" class="header-button">До покупок</button>
+      <div class="nav-wrapper">
+        <ul class="nav-list hidden-element">
+          <li class="nav-list-item">
+            <a href="#furniture-list" class="nav-link">Наші меблі</a>
+          </li>
+          <li class="nav-list-item">
+            <a href="#about-us" class="nav-link">Про нас</a>
+          </li>
+          <li class="nav-list-item">
+            <a href="#faq-section" class="nav-link">Часті питання</a>
+          </li>
+          <li class="nav-list-item">
+            <a href="#feedback" class="nav-link">Відгуки</a>
+          </li>
+        </ul>
+        <button href="#furniture-list" type="button" class="header-button hidden-element">
+          До покупок
+        </button>
+      </div>
       <button type="button" class="burger-button" data-menu-open>
-        <!-- <svg class="burger-icon" width="24" height="24">
-          <use href="./images/icons.svg#icon-burger-btn">  
-        </svg> -->
+        <svg class="burger-button" width="32" height="32">
+          <use href="/img/sprite.svg#menu">
+        </svg>
       </button>
     </nav>
   </div>

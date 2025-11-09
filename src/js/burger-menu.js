@@ -1,0 +1,53 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const openMenuBtn = document.querySelector('[data-menu-open]');
+  const menu = document.querySelector('.burger-menu');
+  const body = document.body;
+
+  if (!openMenuBtn || !menu) {
+    console.warn('Не знайдено елементи меню');
+    return;
+  }
+
+  const closeBtn = document.createElement('button');
+  closeBtn.classList.add('burger-menu-navbar-btn-close');
+  closeBtn.setAttribute('type', 'button');
+  closeBtn.setAttribute('data-navbar-close', '');
+  closeBtn.innerHTML = `
+    <svg width="32" height="32">
+      <use href="/img/sprite.svg#x"></use>
+    </svg>
+  `;
+
+  const nav = menu.querySelector('.burger-menu-header-nav');
+  nav.prepend(closeBtn);
+
+  openMenuBtn.addEventListener('click', () => {
+    menu.classList.add('is-open');
+    body.classList.add('no-scroll');
+    openMenuBtn.style.display = 'none';
+    closeBtn.style.display = 'flex';
+  });
+
+
+  const closeMenu = () => {
+    menu.classList.remove('is-open');
+    body.classList.remove('no-scroll');
+    openMenuBtn.style.display = 'flex';
+    closeBtn.style.display = 'none';
+  };
+
+  closeBtn.addEventListener('click', closeMenu);
+
+
+  const menuLinks = menu.querySelectorAll('.nav-link');
+  menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+ 
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('is-open')) {
+      closeMenu();
+    }
+  });
+
+  closeBtn.style.display = 'none';
+});
