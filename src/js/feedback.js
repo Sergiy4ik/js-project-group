@@ -70,11 +70,11 @@ export function initFeedbackSwiper(totalSlides = 10) {
     on: {
       init: function () {
         updateNavigationButtons();
-        updatePagination();
+        // updatePagination();
       },
       slideChange: function () {
         updateNavigationButtons();
-        updatePagination();
+        // updatePagination();
       },
       resize: function () {
         updateNavigationButtons();
