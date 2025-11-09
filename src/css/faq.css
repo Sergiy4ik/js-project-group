@@ -23,6 +23,7 @@ margin-bottom: 32px;
 
 
 .ac {
+  border: none;
   border-top: 1px solid rgba(8, 12, 9, 0.15);
   overflow: hidden;
    transition: all 0.3s ease;
@@ -34,7 +35,10 @@ margin-bottom: 32px;
 }
 
 .ac-header {
+  position: relative; 
+  padding-right: 40px;
   margin: 0;
+
 }
 
 .ac-trigger {
@@ -52,9 +56,29 @@ margin-bottom: 32px;
   text-align: left;
 }
 
+.ac-trigger::after {
+  content: none !important; 
+}
+
+.ac .ac-trigger {
+  color: #080C09; 
+  transition: color 0.3s ease;
+}
+
+
+.ac.is-active .ac-trigger {
+  color: #080C09; 
+}
+
+.ac-icon {
+  position: absolute;
+  right: 0;  
+  transform: translateY(-50%); 
+  transition: transform 0.3s ease;
+}
 
 .ac.is-active .ac-trigger::after {
-  transform: rotate(90deg);
+  transform: translateY(-50%) rotate(180deg);
 }
 
 
