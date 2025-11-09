@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   const openMenuBtn = document.querySelector('[data-menu-open]');
   const menu = document.querySelector('.burger-menu');
+  const headerNav = document.querySelector('.header-nav');
   const body = document.body;
 
-  if (!openMenuBtn || !menu) {
-    console.warn('Не знайдено елементи меню');
+  if (!openMenuBtn || !menu || !headerNav) {
+    console.warn('Не знайдено елементи меню або хедеру');
     return;
   }
 
@@ -18,8 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </svg>
   `;
 
-  const nav = menu.querySelector('.burger-menu-header-nav');
-  nav.prepend(closeBtn);
+  openMenuBtn.insertAdjacentElement('beforebegin', closeBtn);
 
   openMenuBtn.addEventListener('click', () => {
     menu.classList.add('is-open');
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     openMenuBtn.style.display = 'none';
     closeBtn.style.display = 'flex';
   });
-
 
   const closeMenu = () => {
     menu.classList.remove('is-open');
@@ -38,11 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeBtn.addEventListener('click', closeMenu);
 
-
   const menuLinks = menu.querySelectorAll('.nav-link');
   menuLinks.forEach(link => link.addEventListener('click', closeMenu));
 
- 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && menu.classList.contains('is-open')) {
       closeMenu();
