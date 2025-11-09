@@ -178,74 +178,126 @@ function closeModal() {
 
 /* ===== тестовий виклик (можна прибрати) =====
  */
+
 // openProductModal('682f9bbf8acbdf505592ac45');
 
 // order-modal
-
 const backdropOrderModal = document.querySelector('.backdrop');
 const modalOrder = document.querySelector('.order-modal');
 const closeOrderBtn = document.querySelector('.modal-close-btn');
 const submitBtn = document.querySelector('.modal-submit-btn');
 const orderForm = document.querySelector('.modal-order-form');
-
-function openOrderModal() {
+let currentProductId = null;
+let currentMarker = null;
+// асинхронне відкриття модалки
+export async function openOrderModal(productId, marker) {
+  currentProductId = productId;
+  currentMarker = marker;
   backdropOrderModal.classList.add('is-open');
   document.body.classList.add('modal-open');
-
+  await new Promise(resolve => setTimeout(resolve, 300));
   window.addEventListener('keydown', handleEscape);
 }
-
-function closeOrderModal() {
+export async function closeOrderModal() {
   backdropOrderModal.classList.remove('is-open');
   document.body.classList.remove('modal-open');
-
+  await new Promise(resolve => setTimeout(resolve, 300));
   window.removeEventListener('keydown', handleEscape);
 }
-
-closeOrderBtn.addEventListener('click', closeOrderModal);
-
-backdropOrderModal.addEventListener('click', event => {
+closeOrderBtn.addEventListener('click', async () => {
+  closeOrderModal();
+});
+backdropOrderModal.addEventListener('click', async event => {
   if (event.target === backdropOrderModal) {
-    closeOrderModal();
+    await closeOrderModal();
   }
 });
-
 function handleEscape(event) {
   if (event.key === 'Escape' || event.key === 'Esc') {
     closeOrderModal();
   }
 }
-
-orderForm.addEventListener('submit', event => {
+// валідація і відправлення форми
+orderForm.addEventListener('submit', async event => {
   event.preventDefault();
-
   const name = orderForm.elements['user-name'].value.trim();
   const phone = orderForm.elements['phone'].value.trim();
-  const comment = orderForm.elements['user-comment'].value.trim();
-
   if (!name || !phone) {
     iziToast.warning({
-      title: 'Ooops!',
+      title: 'Упс!',
       message: "Будь ласка, заповніть всі обов'язкові поля!",
       position: 'topRight',
     });
     return;
   }
-
   const clearPhone = phone.replace(/[^\d+]/g, '');
   const phonePattern = /^\+?\d{10,15}$/;
-
   if (!phonePattern.test(clearPhone)) {
     iziToast.warning({
-      title: 'Ooops!',
+      title: 'Упс!',
       message: 'Будь ласка, введіть коректний номер телефону',
       position: 'topRight',
     });
     return;
   }
+  // Запит POST
+  const orderData = {
+    name,
+    phone: clearPhone,
+    comment,
+    productId: currentProductId,
+    marker: currentMarker,
+  };
+  try {
+    const response = await fetch(
+      'https://furniture-store-v2.b.goit.study/api-docs/orders',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      }
+    );
+    if (!response.ok) {
+      throw new Error('Не вдалось створити замовлення. Спробуйте ще раз');
+    }
+    iziToast.success({
+      title: 'Успішно!',
+      message: 'Ваше замовлення відправлено!',
+      position: 'topRight',
+      timeout: 3000,
+    });
+    orderForm.reset();
+    await closeOrderModal();
+  } catch (error) {
+    iziToast.error({
+      title: 'Помилка!',
+      message: 'Щось пішло не так. Спробуйте ще раз.',
+      position: 'topRight',
+    });
+  }
 });
-
+// Локальне сховище
+function saveFieldToLocalStorage(event) {
+  const field = event.target;
+  localStorage.setItem(field.name, field.value);
+}
+orderForm.querySelectorAll('input, textarea').forEach(field => {
+  field.addEventListener('input', saveFieldToLocalStorage);
+});
+orderForm.querySelectorAll('input, textarea').forEach(field => {
+  const savedValue = localStorage.getItem(field.name);
+  if (savedValue) {
+    field.value = savedValue;
+  }
+});
+orderForm.addEventListener('submit', () => {
+  orderForm.querySelectorAll('input, textarea').forEach(field => {
+    localStorage.removeItem(field.name);
+  });
+});
 // тестова кнопка для відкриття модалки
 document
   .querySelector('.open-modal-btn')
-  ?.addEventListener('click', openOrderModal);
+  ?.addEventListener('click', async () => {
+    await openOrderModal();
+  });

@@ -139,3 +139,273 @@
         width: 100%;
     }
 }
+/* .header {
+  padding: 16px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(12, 12, 12, 0.08);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+} */
+
+/* ЛОГО */
+
+/* .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #080c09;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.logo-icon {
+  display: block;
+}
+
+.logo-text {
+  font-size: 18px;
+} */
+
+/* ДЕСКТОПНА НАВІГАЦІЯ (ховаємо на моб/планшеті) */
+/* 
+.nav-list {
+  display: none;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+}
+
+.nav-list-item {
+  margin: 0;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #080c09;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #6b0609;
+  border-radius: 1px;
+  transition: width 200ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #6b0609;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+} */
+
+/* КНОПКА "ДО ПОКУПОК" (десктоп) */
+
+/* .header-button {
+  display: none;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  background-color: #6b0609;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.header-button:hover,
+.header-button:focus-visible {
+  background-color: #500306;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+} */
+
+/* БУРГЕР (моб + планшет) */
+
+/* .burger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(8, 12, 9, 0.16);
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.burger-icon {
+  display: block;
+}
+
+.burger-button:hover,
+.burger-button:focus-visible {
+  background-color: rgba(8, 12, 9, 0.04);
+  border-color: rgba(8, 12, 9, 0.4);
+  transform: translateY(-1px);
+} */
+
+/* МОБІЛЬНЕ / ПЛАНШЕТНЕ МЕНЮ */
+
+/* .mobile-menu {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(8, 12, 9, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 250ms ease, visibility 250ms ease;
+  z-index: 1000;
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+} */
+
+/* .mobile-menu-inner {
+  position: absolute;
+  inset: 0;
+  background-color: #ffffff;
+  padding: 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+} */
+
+/* планшет: панель справа, не на всю ширину */
+
+/* @media (min-width: 768px) {
+  .mobile-menu-inner {
+    left: auto;
+    width: 320px;
+  }
+} */
+
+/* кнопка закриття */
+
+/* .mobile-menu-close {
+  align-self: flex-end;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(8, 12, 9, 0.16);
+  background-color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.mobile-menu-close:hover,
+.mobile-menu-close:focus-visible {
+  background-color: rgba(8, 12, 9, 0.04);
+  border-color: rgba(8, 12, 9, 0.4);
+} */
+
+/* лінки в мобільному меню */
+
+/* .mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-link {
+  font-size: 18px;
+  color: #080c09;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: #6b0609;
+} */
+
+/* кнопка в мобільному меню */
+
+/* .mobile-menu-btn {
+  align-self: flex-start;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  background-color: #6b0609;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms ease, transform 200ms ease,
+    box-shadow 200ms ease;
+} */
+
+/* .mobile-menu-btn:hover,
+.mobile-menu-btn:focus-visible {
+  background-color: #500306;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+} */
+
+/* при відкритому бургері сторінка не скролиться */
+
+/* body.menu-open {
+  overflow: hidden;
+} */
+
+/* ========= ДЕСКТОП: з 1440px ========= */
+
+/* @media (min-width: 1440px) {
+  .header {
+    padding: 24px 0;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  .nav-list {
+    display: flex;
+  }
+
+  .header-button {
+    display: inline-flex;
+  }
+
+  .burger-button {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+} */

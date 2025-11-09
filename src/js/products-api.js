@@ -13,7 +13,7 @@ import {
 axios.defaults.baseURL = BASE_URL;
 
 // Functions for Furnitures
-export async function getFurnitures(currentPage = 1) {
+export async function getFurnitures(currentPage = FURNITURE_PAGE) {
   const { data } = await axios(
     `${API_ENDPOINTS.FURNITURES}?page=${currentPage}&limit=${FURNITURE_LIMIT}`
   );
