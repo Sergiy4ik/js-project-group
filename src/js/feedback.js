@@ -8,7 +8,6 @@ import { getFeedbacks } from './products-api.js';
 import { renderFeedbacks } from './render-function.js';
 import { FEEDBACK_LIMIT } from './constants.js';
 import refs from './refs.js';
-import 'css-star-rating/css/star-rating.min.css';
 
 let feedbackSwiper = null;
 

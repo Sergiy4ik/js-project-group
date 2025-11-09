@@ -6,7 +6,6 @@ import {
   onLoadMoreClick,
   onProductsClick,
 } from './js/handlers.js';
-import './js/burger-menu.js';
 import { initFeedbacks } from './js/feedback.js';
 
 window.addEventListener('load', () => {
