@@ -1,13 +1,66 @@
+
 .herobaner {
     display: flex;
     width: 1440px;
     height: 100%;
-    background-image: url("../public/hero_vel.webp");
+    background-image: image-set(
+        url("../public/hero_vel@1x.webp") 1x,
+        url("../public/hero_vel@2x.webp") 2x
+    );
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     color: #fff;
     margin: 0 auto;
+}
+
+@media (min-width:768px) and (max-width:1439px) {
+    .herobaner {
+        width: 768px;
+        background-image: image-set(url("../public/hero_lap@1x.webp") 1x,
+                url("../public/hero_lap@2x.webp") 2x);
+    }
+}
+
+@media (max-width:767px) {
+    .herobaner {
+        width: 375px;
+        height: 616px;
+        background-image: image-set(
+            url("../public/hero_mob@1x.webp") 1x,
+            url("../public/hero_mob@2x.webp") 2x
+        );
+    }
+}
+
+.container-hero {
+  width: 1312px;
+  height: 323px;
+  margin: 0 auto;
+  margin-top: 92px;
+  margin-bottom: 92px;
+
+}
+
+@media (min-width:768px) and (max-width:1439px){
+    .container-hero {
+        width: 704px;
+        height: 237px;
+        max-width: 1318px;
+        margin-top: 79px;
+        margin-bottom: 80px;
+    
+        }
+}
+
+@media (max-width:767px) {
+    .container-hero {
+    width: 335px;
+    height: 343px;
+    /* max-width: 1318px; */
+    margin-top: 136px;
+    margin-bottom: 137px;
+    }
 }
 
 .herobaner-title {
@@ -20,6 +73,20 @@
     margin-bottom: 24px;
 }
 
+@media (min-width:768px) and (max-width:1439px){
+     .herobaner-title {
+        font-size: 40px;
+        }
+}
+
+@media (max-width:767px) {
+    .herobaner-title {
+    width: 335px;
+    height: 96px;
+    font-size: 40px;
+}
+}
+
 .herobaner-text {
     width: 560px;
     height: 87px;
@@ -28,7 +95,14 @@
     line-height: 160%;
     font-family: "Raleway", sans-serif;
     margin-bottom: 32px;
-    opacity: 0.7;
+    opacity: 0.6;
+}
+
+@media (max-width:767px) {
+    .herobaner-text {
+      width: 335px;
+      height: 145px;
+    }
 }
 
 .btn-hero {
@@ -41,9 +115,19 @@
     text-decoration: none;
 
 }
+
+@media (max-width:767px) {
+    .btn-hero {
+        padding: 10px 87px;
+    }
+}
+
+
 .btn-hero-text {
     font-weight: 500;
     font-size: 16px;
     line-height: 160%;
     text-align: center;
+    opacity: 0,6;
 }
+
