@@ -110,11 +110,25 @@
     padding: 10px 24px;
     width: 209px;
     height: 46px;
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 var(--opacity-white-5);
+    box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(8, 12, 9, 0.15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
     background-color: #6B0609;
     text-decoration: none;
 
 }
+
+.btn-hero:hover,
+.btn-hero:focus {
+    box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05), inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+    opacity: 0.5;
+}
+
+.btn-hero:active {
+    box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05), inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+    color: #080C09;
+    background: rgba(8, 12, 9, 0.05);
+    opacity: 0.5;
+} 
+
 
 @media (max-width:767px) {
     .btn-hero {
