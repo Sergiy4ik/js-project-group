@@ -1,5 +1,3 @@
-// Хендлери, які передаються в addEventListener.
-
 import {
   clearFurnitures,
   renderCategories,
@@ -7,19 +5,10 @@ import {
 } from './render-function';
 import {
   getFurnitures,
-  getFurnitureByID,
   getCategories,
-  getFeedbacks,
-  createOrder,
   getFurnituresByCategories,
 } from './products-api.js';
-
-import {
-  FURNITURE_PAGE,
-  FURNITURE_LIMIT,
-  FEEDBACK_PAGE,
-  FEEDBACK_LIMIT,
-} from './constants.js';
+import { FURNITURE_LIMIT } from './constants.js';
 import refs from './refs.js';
 import {
   hideLoader,
@@ -28,7 +17,9 @@ import {
   showInfo,
   showLoader,
   showLoadMoreBtn,
+  showWarning,
 } from './helpers.js';
+import { openProductModal } from './modal.js';
 
 let currentPage = 1;
 let currentCategory = '';
@@ -36,7 +27,6 @@ let currentCategory = '';
 export async function initialHome() {
   try {
     showLoader();
-
     const categories = await getCategories();
     renderCategories(categories);
 
@@ -61,7 +51,6 @@ export async function handlerClickCategory(event) {
   }
 
   const categoriesChildrenArrey = [...event.currentTarget.children];
-
   categoriesChildrenArrey.map(child => {
     child.classList.remove('categories-item--active');
   });
@@ -70,7 +59,6 @@ export async function handlerClickCategory(event) {
   item.classList.add('categories-item--active');
   currentPage = 1;
   currentCategory = item.id;
-
   showLoader();
   try {
     if (currentCategory === 'all') {
@@ -84,12 +72,14 @@ export async function handlerClickCategory(event) {
       );
       if (!furnitures.length) {
         hideLoadMoreBtn();
-        showInfo('Not found');
+        showInfo(`Furnitures in "${item.textContent}" categories is not found`);
         return;
       } else {
         if (totalItems < FURNITURE_LIMIT) {
           hideLoadMoreBtn();
-          showInfo('End collections');
+          showInfo(
+            `Ended furnitures collections in "${item.textContent}" categories`
+          );
         }
         renderFurnitures(furnitures);
       }
@@ -124,7 +114,7 @@ export async function onLoadMoreClick(event) {
 
       if (!furnitures.length) {
         hideLoadMoreBtn();
-        showInfo('Not found');
+        showInfo(`Furnitures is not found`);
         return;
       } else {
         if (totalItems < FURNITURE_LIMIT) {
@@ -140,8 +130,6 @@ export async function onLoadMoreClick(event) {
     hideLoader();
   }
 }
-
-import { openProductModal } from './modal.js';
 
 export const onProductsClick = e => {
   const btn = e.target.closest('.products-details-btn');
@@ -160,71 +148,10 @@ export const onProductsClick = e => {
   }
 
   if (!id) {
-    console.warn('Не знайдено id товару для модалки');
+    showWarning('ID not found');
     return;
   }
 
   e.preventDefault();
   openProductModal(id);
 };
-
-// // furniture
-// export async function loadFurnitures(
-//   params = { page: FURNITURE_PAGE, limit: FURNITURE_LIMIT }
-// ) {
-//   try {
-//     const data = await getFurnitures(params.page || FURNITURE_PAGE);
-//     console.log('Furnitures:', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Furnitures downloading error:', error);
-//     return null;
-//   }
-// }
-
-// export async function loadFurnitureById(id) {
-//   try {
-//     const data = await getFurnitureByID(id);
-//     console.log('Furniture details:', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Furniture id downloading error:', error);
-//     return null;
-//   }
-// }
-
-// export async function loadCategories() {
-//   try {
-//     const data = await getCategories();
-//     console.log('Categories:', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Categories downloading error:', error);
-//     return null;
-//   }
-// }
-
-// Примітка: Функція loadFeedbacks реалізована в feedback.js
-// Використовуйте initFeedbacks() з feedback.js для завантаження відгуків
-// export async function loadFeedbacks(
-//   params = { page: FEEDBACK_PAGE, limit: FEEDBACK_LIMIT }
-// ) {
-//   try {
-//     const data = await getFeedbacks(params);
-//     console.log('Feedbacks', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Feedbacks downloading error:', error);
-//     return null;
-//   }
-// }
-// export async function sendOrder(orderData) {
-//   try {
-//     const data = await createOrder(orderData);
-//     console.log('Order created:', data);
-//     return data;
-//   } catch (error) {
-//     console.error('Creating order error:', error);
-//     return null;
-//   }
-// }

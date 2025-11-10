@@ -1,5 +1,3 @@
-// Допоміжні функції, які знадобляться для реалізації завдання (показ повідомлень, кнопок, лоадерів)
-
 import iziToast from 'izitoast';
 import refs from './refs';
 
@@ -31,6 +29,8 @@ export function roundRating(rating) {
 iziToast.settings({
   position: 'topRight',
   displayMode: 'replace',
+  timeout: 6000,
+  progressBar: false,
 });
 
 export function showInfo(message) {

@@ -1,4 +1,3 @@
-// Функції для відображення елементів інтерфейсу.
 import refs from './refs';
 import Accordion from 'accordion-js';
 import 'accordion-js/dist/accordion.min.css';

@@ -1,4 +1,3 @@
-// src/main.js
 import refs from './js/refs.js';
 import {
   handlerClickCategory,

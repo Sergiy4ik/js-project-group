@@ -1,4 +1,3 @@
-// Функціонал для секції відгуків
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -8,6 +7,7 @@ import { getFeedbacks } from './products-api.js';
 import { renderFeedbacks } from './render-function.js';
 import { FEEDBACK_LIMIT } from './constants.js';
 import refs from './refs.js';
+import { showError, showWarning } from './helpers.js';
 
 let feedbackSwiper = null;
 
@@ -33,12 +33,12 @@ export function initFeedbackSwiper(totalSlides = 10) {
     touchRatio: 1,
     simulateTouch: true,
     watchSlidesProgress: true,
-    
+
     navigation: {
       nextEl: refs.feedbackNavNext,
       prevEl: refs.feedbackNavPrev,
     },
-    
+
     pagination: {
       el: refs.feedbackPaginationDots,
       clickable: true,
@@ -47,7 +47,7 @@ export function initFeedbackSwiper(totalSlides = 10) {
       type: 'bullets',
       dynamicBullets: false,
     },
-    
+
     breakpoints: {
       375: {
         slidesPerView: 1,
@@ -65,22 +65,20 @@ export function initFeedbackSwiper(totalSlides = 10) {
         spaceBetween: 24,
       },
     },
-    
+
     on: {
       init: function () {
         updateNavigationButtons();
-        // updatePagination();
       },
       slideChange: function () {
         updateNavigationButtons();
-        // updatePagination();
       },
       resize: function () {
         updateNavigationButtons();
       },
     },
   });
-  
+
   return feedbackSwiper;
 }
 
@@ -114,42 +112,39 @@ function updateNavigationButtons() {
   }
 }
 
-// Оновлення пагінації
-// function updatePagination() {
-
-// }
-
 // Завантаження та відображення відгуків
 export async function loadFeedbacks() {
   try {
     const data = await getFeedbacks({ limit: FEEDBACK_LIMIT });
     const feedbacks = data.feedbacks || [];
-    
+
     if (feedbacks.length === 0) {
-      console.warn('No feedbacks received from API');
+      showWarning('No feedbacks received from API');
       return;
     }
 
-
     renderFeedbacks(feedbacks);
-    
+
     setTimeout(() => {
       initFeedbackSwiper(feedbacks.length);
     }, 50);
-    
   } catch (error) {
-    console.error('Error loading feedbacks:', error);
+    showError(error);
   }
 }
 
 // Ініціалізація відгуків при завантаженні сторінки
 export async function initFeedbacks() {
-
-  if (!refs.feedbackSwiper || !refs.feedbackCardList || !refs.feedbackNavPrev || !refs.feedbackNavNext || !refs.feedbackPaginationDots) {
-    console.warn('Feedback section elements not found in DOM');
+  if (
+    !refs.feedbackSwiper ||
+    !refs.feedbackCardList ||
+    !refs.feedbackNavPrev ||
+    !refs.feedbackNavNext ||
+    !refs.feedbackPaginationDots
+  ) {
+    showWarning('Feedback section elements not found in DOM');
     return;
   }
-  
+
   await loadFeedbacks();
 }
-

@@ -1,11 +1,6 @@
-// ===============================
-// src/js/modal.js
-// ===============================
-
-import 'izitoast/dist/css/iziToast.min.css';
-import iziToast from 'izitoast';
 import axios from 'axios';
-
+import { showError, showSuccess, showWarning } from './helpers';
+import refs from './refs';
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
 
@@ -161,14 +156,8 @@ export async function openProductModal(id) {
       dialog.setAttribute('tabindex', '-1');
       dialog.focus({ preventScroll: true });
     }
-  } catch (e) {
-    console.error('❌ Помилка завантаження товару', e);
-    closeProductModal();
-    iziToast.error({
-      title: 'Error',
-      message: 'Failed to load product data.',
-      position: 'topRight',
-    });
+  } catch (error) {
+    showError(error);
   }
 }
 
@@ -186,14 +175,7 @@ function closeProductModal() {
 }
 
 // ===== Друга модалка (замовлення) =====
-// Елементи
-const backdropOrderModal = document.querySelector('.backdrop');
-const modalOrder = document.querySelector('.order-modal');
-const closeOrderBtn = modalOrder.querySelector('.modal-close-btn'); 
-const submitBtn = modalOrder.querySelector('.modal-submit-btn');
-const orderForm = modalOrder.querySelector('.modal-order-form');
-
-closeOrderBtn.addEventListener('click', async () => {
+refs.closeOrderBtn.addEventListener('click', async () => {
   await closeOrderModal();
 });
 
@@ -208,62 +190,50 @@ export async function openOrderModal(modelId, marker, color) {
   currentModelId = modelId ?? null;
   currentColor = color ?? null;
 
-  backdropOrderModal.classList.add('is-open');
+  refs.backdropOrderModal.classList.add('is-open');
   document.body.classList.add('modal-open');
   window.addEventListener('keydown', handleOrderEsc);
 
   // Відновлення полів з localStorage
-  orderForm.querySelectorAll('input, textarea').forEach(f => {
+  refs.orderForm.querySelectorAll('input, textarea').forEach(f => {
     const saved = localStorage.getItem(f.name);
     if (saved) f.value = saved;
   });
 }
 
 export async function closeOrderModal() {
-  backdropOrderModal.classList.remove('is-open');
+  refs.backdropOrderModal.classList.remove('is-open');
   document.body.classList.remove('modal-open');
   window.removeEventListener('keydown', handleOrderEsc);
 }
 
-closeOrderBtn?.addEventListener('click', () => closeOrderModal());
-backdropOrderModal?.addEventListener('mousedown', e => {
-  if (e.target === backdropOrderModal) closeOrderModal();
+refs.closeOrderBtn?.addEventListener('click', () => closeOrderModal());
+refs.backdropOrderModal?.addEventListener('mousedown', e => {
+  if (e.target === refs.backdropOrderModal) closeOrderModal();
 });
 
 // Сабміт форми
-orderForm?.addEventListener('submit', async e => {
+refs.orderForm?.addEventListener('submit', async e => {
   e.preventDefault();
 
-  const name = orderForm.elements['user-name']?.value.trim();
-  const phone = orderForm.elements['phone']?.value.trim();
-  const comment = orderForm.elements['user-comment']?.value.trim() || '';
+  const name = refs.orderForm.elements['user-name']?.value.trim();
+  const phone = refs.orderForm.elements['phone']?.value.trim();
+  const comment = refs.orderForm.elements['user-comment']?.value.trim() || '';
 
   if (!name || !phone) {
-    iziToast.warning({
-      title: 'Увага',
-      message: "Будь ласка, заповніть ім'я та телефон.",
-      position: 'topRight',
-    });
+    showWarning('Please fill in your name and phone number.');
     return;
   }
 
   if (!currentModelId) {
-    iziToast.warning({
-      title: 'Увага',
-      message: 'Оберіть товар перед замовленням.',
-      position: 'topRight',
-    });
+    showWarning('Choose a product before ordering.');
     return;
   }
 
   const clearPhone = phone.replace(/[^\d+]/g, '');
   const phonePattern = /^\+?\d{10,15}$/;
   if (!phonePattern.test(clearPhone)) {
-    iziToast.warning({
-      title: 'Увага',
-      message: 'Введіть коректний номер телефону.',
-      position: 'topRight',
-    });
+    showWarning('Enter a valid phone number.');
     return;
   }
 
@@ -275,37 +245,25 @@ orderForm?.addEventListener('submit', async e => {
     color: currentColor,
   };
 
-  submitBtn.disabled = true;
+  refs.submitBtn.disabled = true;
 
   try {
     const res = await axios.post('/orders', payload);
-    iziToast.success({
-      title: 'Успішно',
-      message: 'Ваше замовлення відправлено!',
-      position: 'topRight',
-      timeout: 3000,
-    });
-    orderForm.reset();
-    orderForm.querySelectorAll('input, textarea').forEach(f =>
-      localStorage.removeItem(f.name)
-    );
+    showSuccess('Your order has been sent!');
+    refs.orderForm.reset();
+    refs.orderForm
+      .querySelectorAll('input, textarea')
+      .forEach(f => localStorage.removeItem(f.name));
     closeOrderModal();
   } catch (error) {
-    const msg =
-      error?.response?.data?.message ||
-      'Щось пішло не так. Спробуйте ще раз.';
-    iziToast.error({
-      title: 'Помилка',
-      message: msg,
-      position: 'topRight',
-    });
+    showError(error);
   } finally {
-    submitBtn.disabled = false;
+    refs.submitBtn.disabled = false;
   }
 });
 
 // Збереження полів у localStorage
-orderForm?.querySelectorAll('input, textarea').forEach(f => {
+refs.orderForm?.querySelectorAll('input, textarea').forEach(f => {
   f.addEventListener('input', e => {
     const field = e.target;
     localStorage.setItem(field.name, field.value);
