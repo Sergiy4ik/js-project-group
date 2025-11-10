@@ -75,10 +75,6 @@
     /* колір хвилі */
 }
 
-.modal-close-btn .close-icon {
-    pointer-events: none;
-    transition: transform .25s cubic-bezier(.4, 0, .2, 1);
-}
 
 /* Ховер: легке обертання + підсвітка */
 .modal-close-btn:hover {
@@ -347,13 +343,6 @@ font-size: 40px
         justify-content: center;
         height: 197px;
         width: 100%;
-    }
-
-    .modal-close-btn {
-        top: 16px;
-        right: 16px;
-        width: 14px;
-        height: 14px
     }
 }
 
