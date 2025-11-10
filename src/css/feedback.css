@@ -273,7 +273,7 @@
 /* Tablet style */
 @media only screen and (min-width: 768px) and (max-width: 1439.98px) {
     .feedback {
-        padding: 48px 32px;
+        padding: 32px;
     }
     .feedbacks-container-title {
         margin-bottom: 48px;
@@ -297,6 +297,6 @@
 /* Desktop style */
 @media only screen and (min-width: 1440px) {
     .feedback {
-        padding: 80px 64px;
+        padding: 64px;
     }
 }
