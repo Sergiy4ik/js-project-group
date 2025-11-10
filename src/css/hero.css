@@ -1,133 +1,122 @@
 .herobaner {
   display: flex;
-  width: 1440px;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
   background-image: image-set(
-    url('/hero_vel@1x.webp') 1x,
-    url('/hero_vel@2x.webp') 2x
+    url("/hero_vel@1x.webp") 1x,
+    url("/hero_vel@2x.webp") 2x
   );
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: #fff;
-  margin: 0 auto;
-  margin-top: 72px;
 }
 
-@media (min-width: 768px) and (max-width: 1439px) {
+@media (min-width:768px) and (max-width:1439px) {
   .herobaner {
-    width: 768px;
     background-image: image-set(
-      url('/hero_lap@1x.webp') 1x,
-      url('/hero_lap@2x.webp') 2x
+      url("/hero_lap@1x.webp") 1x,
+      url("/hero_lap@2x.webp") 2x
     );
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .herobaner {
-    width: 375px;
-    height: 616px;
     background-image: image-set(
-      url('/hero_mob@1x.webp') 1x,
-      url('/hero_mob@2x.webp') 2x
+      url("/hero_mob@1x.webp") 1x,
+      url("/hero_mob@2x.webp") 2x
     );
   }
 }
 
 .container-hero {
-  width: 1312px;
-  height: 323px;
+  width: 100%;
+  max-width: 1312px;
   margin: 0 auto;
-  margin-top: 92px;
-  margin-bottom: 92px;
+  margin-top: 72px;
+  padding: 92px 20px;
+  box-sizing: border-box;
 }
 
-@media (min-width: 768px) and (max-width: 1439px) {
+@media (min-width:768px) and (max-width:1439px){
   .container-hero {
-    width: 704px;
-    height: 237px;
-    max-width: 1318px;
-    margin-top: 79px;
-    margin-bottom: 80px;
+    max-width: 704px;
+    padding: 80px 32px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .container-hero {
-    width: 335px;
-    height: 343px;
-    margin-top: 136px;
-    margin-bottom: 137px;
+    max-width: 335px;
+    padding: 136px 20px 137px;
   }
 }
 
 .herobaner-title {
   padding: 0;
-  width: 560px;
+  width: 100%;
+  max-width: 560px;
   font-weight: 700;
   font-size: 56px;
   line-height: 120%;
   letter-spacing: 0.01em;
-  margin-bottom: 24px;
+  margin: 0 0 24px;
 }
 
-@media (min-width: 768px) and (max-width: 1439px) {
+@media (min-width:768px) and (max-width:1439px){
   .herobaner-title {
     font-size: 40px;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .herobaner-title {
-    width: 335px;
-    height: 96px;
+    max-width: 100%;
     font-size: 40px;
   }
 }
 
 .herobaner-text {
-  width: 560px;
-  height: 87px;
+  width: 100%;
+  max-width: 560px;
   font-weight: 400;
   font-size: 18px;
   line-height: 160%;
-  font-family: 'Raleway', sans-serif;
-  margin-bottom: 32px;
+  font-family: "Raleway", sans-serif;
+  margin: 0 0 32px;
   opacity: 0.6;
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .herobaner-text {
-    width: 335px;
-    height: 145px;
+    max-width: 100%;
   }
 }
 
 .btn-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 100px;
   padding: 10px 24px;
-  width: 209px;
-  height: 46px;
-  box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05),
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(8, 12, 9, 0.15),
-    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
-  background-color: #6b0609;
+  min-height: 46px;
+  box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(8, 12, 9, 0.15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
+  background-color: #6B0609;
   text-decoration: none;
+  transition: opacity 0.25s ease-in-out;
 }
 
 .btn-hero:hover,
 .btn-hero:focus {
-  box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05),
-    inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05),
-    inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+  box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05), inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05), inset 0 0 0 1px rgba(8, 12, 9, 0.05);
   opacity: 0.5;
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
   .btn-hero {
-    padding: 10px 87px;
+    width: 100%;
+    max-width: 280px;
   }
 }
 
@@ -136,5 +125,5 @@
   font-size: 16px;
   line-height: 160%;
   text-align: center;
-  opacity: 0, 6;
+  opacity: 0.6;
 }
