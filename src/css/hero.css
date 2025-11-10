@@ -3,8 +3,8 @@
   width: 1440px;
   height: 100%;
   background-image: image-set(
-    url('/hero_vel@1x.webp') 1x,
-    url('/hero_vel@2x.webp') 2x
+    url('../public/hero_vel@1x.webp') 1x,
+    url('../public/hero_vel@2x.webp') 2x
   );
   background-size: cover;
   background-repeat: no-repeat;
@@ -56,7 +56,6 @@
   .container-hero {
     width: 335px;
     height: 343px;
-    /* max-width: 1318px; */
     margin-top: 136px;
     margin-bottom: 137px;
   }

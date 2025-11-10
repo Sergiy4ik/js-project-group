@@ -67,12 +67,12 @@ new Accordion('.accordion-container', {
   showMultiple: false,
   beforeOpen: currElement => {
     const arrow = currElement.querySelector('.ac-icon');
-    if (arrow) arrow.style.transform = 'rotate(180deg)';
+    if (arrow) arrow.style.transform = 'translateY(-50%) rotate(180deg)';
   },
 
   beforeClose: currElement => {
     const arrow = currElement.querySelector('.ac-icon');
-    if (arrow) arrow.style.transform = 'rotate(0deg)';
+    if (arrow) arrow.style.transform = 'translateY(-50%) rotate(0deg)';
   },
 });
 

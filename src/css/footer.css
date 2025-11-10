@@ -1,137 +1,123 @@
-    /* Mobile screen start */
+html {
+  scroll-behavior: smooth;
+}
 
-    html {
-        scroll-behavior: smooth;
-    }
+.footer {
+  display: flex;
+  align-items: center;
+  background-color: #6b0609;
+}
 
-    .footer {
-        display: flex;
-        align-items: center;
-        background-color: #6b0609;
-    }
+.footer-logo {
+  display: flex;
+  justify-content: center;
+}
 
-    .footer-logo {
-        display: flex;
-        justify-content: center;
-    }
+.footer .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0;
+}
 
-    .footer .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 0;
-    }
+.footer-descr {
+  line-height: 160%;
+  font-size: 14px;
+  color: #fff;
+  padding: 0 32px;
+  position: relative;
+  top: 278px;
+}
 
-    .footer-descr {
-        line-height: 160%;
-        font-size: 14px;
-        color: #fff;
-        padding: 0 32px;
-        position: relative;
-        top: 278px;
-    }
+.footer-nav {
+  font-size: 16px;
+  line-height: 160%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
 
-    .footer-nav {
-        font-size: 16px;
-        line-height: 160%;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        margin-bottom: 24px;
-    }
+.footer-nav-link {
+  position: relative;
+  padding-bottom: 1px;
+  display: flex;
+  justify-content: center;
+}
 
-    .footer-nav-link {
-        position: relative;
-        padding-bottom: 1px;
-        display: flex;
-        justify-content: center;
-    }
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 250ms ease-in-out;
+}
 
-    .footer-nav-link::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 2px;
-        background-color: #fff;
-        transition: width 250ms ease-in-out;
-    }
+.footer-nav-link:hover::after {
+  width: 100%;
+}
 
-    .footer-nav-link:hover::after {
-        width: 100%;
-    }
+.footer-nav-link:focus::after {
+  width: 100%;
+}
 
-    .footer-nav-link:focus::after {
-        width: 100%;
-    }
+.social-media-list {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 74px;
+}
 
-    .social-media-list {
-        display: flex;
-        gap: 24px;
-        margin-bottom: 74px;
-    }
+.icon:hover,
+.icon:focus {
+  opacity: 0.8;
+}
 
-    .icon:hover,
-    .icon:focus {
-        opacity: 0.8;
-    }
+@media (min-width: 768px) {
+  .footer-nav {
+    flex-direction: row;
+    gap: 32px;
+  }
 
-    /* Mobile screen end */
+  .footer-descr {
+    top: 124px;
+  }
 
-    /* Tabtel screen start */
+  .footer .container {
+    margin-bottom: 0;
+  }
 
-    @media (min-width: 768px) {
+  .social-media-list {
+    margin-bottom: 74px;
+  }
+}
 
-        .footer-nav {
-            flex-direction: row;
-            gap: 32px;
-        }
+@media (min-width: 1200px) {
+  .footer {
+    height: 98px;
+  }
 
-        .footer-descr {
-            top: 124px;
-        }
+  .footer .container {
+    flex-direction: row;
+  }
 
-        .footer .container {
-            margin-bottom: 0;
-        }
+  .footer-logo {
+    margin: 0;
+  }
 
-        .social-media-list {
-            margin-bottom: 74px;
-        }
-    }
+  .footer-descr {
+    position: unset;
+    margin: 0 80px;
+  }
 
-    /* Tabtel screen end */
+  .footer-nav {
+    margin: 0 80px 0 0;
+  }
 
-    /* Desktop screen start */
-
-    @media (min-width: 1200px) {
-
-        .footer {
-            height: 98px;
-        }
-
-        .footer .container {
-            flex-direction: row;
-        }
-
-        .footer-logo {
-            margin: 0;
-        }
-
-        .footer-descr {
-            position: unset;
-            margin: 0 80px;
-        }
-
-        .footer-nav {
-            margin: 0 80px 0 0;
-        }
-
-        .social-media-list {
-            margin: 0;
-        }
-    }
-
-    /* Desktop screen end */
+  .social-media-list {
+    margin: 0;
+  }
+}

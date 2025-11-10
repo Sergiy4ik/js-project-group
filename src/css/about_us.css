@@ -3,7 +3,6 @@
   padding: 64px 20px;
 }
 
-/* -------- БАЗОВА ВЕРСІЯ (mobile-first, гумова до 375px) -------- */
 .about-container {
   display: flex;
   flex-direction: column;
@@ -48,7 +47,6 @@
   object-fit: cover;
 }
 
-/* -------- TABLET (з 768px) -------- */
 @media screen and (min-width: 768px) {
   .about-container {
     align-items: center;
@@ -64,14 +62,12 @@
   .about-content {
     text-align: left;
   }
-
 }
 
-/* -------- DESKTOP (з 1440px) -------- */
 @media screen and (min-width: 1440px) {
   .about-container {
     padding: 64px;
-    gap: 24px;  
+    gap: 24px;
     flex-direction: row;
   }
 
