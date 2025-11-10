@@ -25,6 +25,8 @@ let currentPage = 1;
 let currentCategory = '';
 
 export async function initialHome() {
+  showWarning('message');
+
   try {
     showLoader();
     const categories = await getCategories();

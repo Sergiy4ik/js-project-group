@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { showError, showSuccess, showWarning } from './helpers';
+import {
+  hideLoader,
+  showError,
+  showLoader,
+  showSuccess,
+  showWarning,
+} from './helpers';
 import refs from './refs';
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
@@ -147,8 +153,8 @@ export async function openProductModal(id) {
           'input[name="color"]:checked'
         );
         const color = checked ? checked.value : null;
-        openOrderModal(id, null, color);
         closeProductModal();
+        openOrderModal(id, null, color);
       };
     }
 
@@ -187,11 +193,10 @@ function handleOrderEsc(e) {
 }
 
 export async function openOrderModal(modelId, marker, color) {
+  document.body.classList.add('modal-open');
   currentModelId = modelId ?? null;
   currentColor = color ?? null;
-
   refs.backdropOrderModal.classList.add('is-open');
-  document.body.classList.add('modal-open');
   window.addEventListener('keydown', handleOrderEsc);
 
   // Відновлення полів з localStorage
@@ -202,8 +207,8 @@ export async function openOrderModal(modelId, marker, color) {
 }
 
 export async function closeOrderModal() {
-  refs.backdropOrderModal.classList.remove('is-open');
   document.body.classList.remove('modal-open');
+  refs.backdropOrderModal.classList.remove('is-open');
   window.removeEventListener('keydown', handleOrderEsc);
 }
 
@@ -215,7 +220,6 @@ refs.backdropOrderModal?.addEventListener('mousedown', e => {
 // Сабміт форми
 refs.orderForm?.addEventListener('submit', async e => {
   e.preventDefault();
-
   const name = refs.orderForm.elements['user-name']?.value.trim();
   const phone = refs.orderForm.elements['user-phone']?.value.trim();
   const comment = refs.orderForm.elements['user-comment']?.value.trim() || '';
@@ -231,7 +235,8 @@ refs.orderForm?.addEventListener('submit', async e => {
   }
 
   const clearPhone = phone.replace(/[^\d+]/g, '');
-  const phonePattern = /^\+?\d{10,15}$/;
+  const phonePattern = /^\+?\d{10,12}$/;
+
   if (!phonePattern.test(clearPhone)) {
     showWarning('Enter a valid phone number.');
     return;
@@ -240,7 +245,7 @@ refs.orderForm?.addEventListener('submit', async e => {
   const payload = {
     name,
     phone: clearPhone,
-    comment,
+    comment: 'empty',
     modelId: currentModelId,
     color: currentColor,
   };
@@ -248,6 +253,7 @@ refs.orderForm?.addEventListener('submit', async e => {
   refs.submitBtn.disabled = true;
 
   try {
+    showLoader();
     const res = await axios.post('/orders', payload);
     showSuccess('Your order has been sent!');
     refs.orderForm.reset();
@@ -258,6 +264,7 @@ refs.orderForm?.addEventListener('submit', async e => {
   } catch (error) {
     showError(error);
   } finally {
+    hideLoader();
     refs.submitBtn.disabled = false;
   }
 });
