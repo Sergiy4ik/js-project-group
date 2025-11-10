@@ -83,19 +83,7 @@ body.modal-open {
     border-radius: 8px;
 }
 
-.modal-close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
+
 
 .modal-title {
     font-weight: 700;
@@ -230,4 +218,15 @@ textarea:focus::placeholder {
     max-width: 738px;
     width: 100%;
 }
+}
+.field-error { margin-top:4px; font-size:12px; color:#c0392b; }
+.is-invalid { border-color:#c0392b !important; }
+.field-error {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #c0392b;
+}
+
+.is-invalid {
+    border-color: #c0392b !important;
 }
