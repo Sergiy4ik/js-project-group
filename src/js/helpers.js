@@ -59,6 +59,7 @@ export function showError(message) {
 
 export function showLoader() {
   refs.loader.classList.remove('hidden');
+  hideLoadMoreBtn();
 }
 
 export function hideLoader() {

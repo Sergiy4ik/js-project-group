@@ -16,11 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   closeBtn.classList.add('burger-menu-navbar-btn-close');
   closeBtn.setAttribute('type', 'button');
   closeBtn.setAttribute('data-navbar-close', '');
-  closeBtn.innerHTML = `
-    <svg width="32" height="32">
-      <use href="/img/sprite.svg#x"></use>
-    </svg>
-  `;
+  closeBtn.innerHTML = `✕`;
 
   openMenuBtn.insertAdjacentElement('beforebegin', closeBtn);
 

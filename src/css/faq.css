@@ -1,5 +1,4 @@
-
- .faq {
+.faq {
   padding: 48px 20px;
   min-width: 335px;
   margin: 0 auto;
@@ -7,13 +6,12 @@
 
 .faq h2 {
   font-weight: 700;
-font-size: 36px;
-line-height: 120%;
-letter-spacing: 0.01em;
-text-align: center;
-margin-bottom: 32px;
+  font-size: 36px;
+  line-height: 120%;
+  letter-spacing: 0.01em;
+  text-align: center;
+  margin-bottom: 32px;
 }
-
 
 .accordion-container {
   display: flex;
@@ -21,12 +19,11 @@ margin-bottom: 32px;
   gap: 0px;
 }
 
-
 .ac {
   border: none;
   border-top: 1px solid rgba(8, 12, 9, 0.15);
   overflow: hidden;
-   transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .accordion-container:last-child {
@@ -35,14 +32,14 @@ margin-bottom: 32px;
 }
 
 .ac-header {
-  position: relative; 
+  position: relative;
   padding-right: 40px;
   margin: 0;
-align-items: center;
+  align-items: center;
 }
 
 .ac-trigger {
-   position: relative;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,30 +54,28 @@ align-items: center;
 }
 
 .ac-trigger::after {
-  content: none !important; 
+  content: none !important;
 }
 
 .ac .ac-trigger {
-  color: #080C09; 
+  color: #080c09;
   transition: color 0.3s ease;
 }
 
-
 .ac.is-active .ac-trigger {
-  color: #080C09; 
+  color: #080c09;
 }
 
 .ac-icon {
   position: absolute;
-  right: 0;  
-  transform: translateY(-50%); 
+  right: 0;
+  transform: translateY(-50%);
   transition: transform 0.3s ease;
 }
 
 .ac.is-active .ac-trigger::after {
   transform: translateY(-50%) rotate(180deg);
 }
-
 
 .ac-panel {
   overflow: hidden;
@@ -91,11 +86,10 @@ align-items: center;
 .ac-text {
   padding: 0px 0px 24px;
   font-weight: 400;
-font-size: 16px;
-line-height: 160%;
-  color: #080C09;
+  font-size: 16px;
+  line-height: 160%;
+  color: #080c09;
 }
-
 
 @media screen and (min-width: 768px) {
   .faq {
@@ -107,7 +101,6 @@ line-height: 160%;
   }
 }
 
-
 @media screen and (min-width: 1440px) {
   .faq {
     padding: 80px 64px;
@@ -117,5 +110,4 @@ line-height: 160%;
   .faq h2 {
     font-size: 48px;
   }
-
-} 
+}
