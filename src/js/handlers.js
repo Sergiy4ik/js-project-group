@@ -24,6 +24,8 @@ import refs from './refs.js';
 import {
   hideLoader,
   hideLoadMoreBtn,
+  showError,
+  showInfo,
   showLoader,
   showLoadMoreBtn,
 } from './helpers.js';
