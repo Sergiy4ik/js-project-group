@@ -1,25 +1,29 @@
+// ===============================
 // src/js/modal.js
+// ===============================
+
 import 'izitoast/dist/css/iziToast.min.css';
 import iziToast from 'izitoast';
 import axios from 'axios';
-import { hideLoader, showLoader } from './helpers';
+
 
 axios.defaults.baseURL = 'https://furniture-store-v2.b.goit.study/api';
 
-// ====== Перша модалка (деталі товару) ======
+// ===== Перша модалка (деталі товару) =====
 const productModal = document.querySelector('.modal-window');
 
 let escHandler = null;
 let backdropHandler = null;
 
-// зірочки
+// Зірочки рейтингу
 function stars(rate = 0) {
   const full = Math.floor(rate);
   const half = rate % 1 >= 0.5 ? 1 : 0;
   let out = '';
   for (let i = 0; i < full; i++) out += '<span class="star star-full">★</span>';
   if (half) out += '<span class="star star-half">★</span>';
-  for (let i = full + half; i < 5; i++) out += '<span class="star star-empty">★</span>';
+  for (let i = full + half; i < 5; i++)
+    out += '<span class="star star-empty">★</span>';
   return out;
 }
 
@@ -52,12 +56,10 @@ function getRefs(root) {
 }
 
 export async function openProductModal(id) {
-  showLoader();
   try {
-    // показати модалку
-      document.body.classList.add('modal-open');
-      productModal.classList.remove('visuallyhidden');
-      productModal.removeAttribute('aria-hidden');
+    document.body.classList.add('modal-open');
+    productModal.classList.remove('visuallyhidden');
+
     const { data } = await axios.get(`/furnitures/${id}`);
     const {
       dialog,
@@ -74,9 +76,11 @@ export async function openProductModal(id) {
       orderBtn,
     } = getRefs(productModal);
 
-    // картинки
+    // Картинки
     const imgs = normalizeImages(data.images || data.image || []);
-    const safeImgs = imgs.length ? imgs : ['https://via.placeholder.com/640x360?text=No+Image'];
+    const safeImgs = imgs.length
+      ? imgs
+      : ['https://via.placeholder.com/640x360?text=No+Image'];
     const main = safeImgs[0];
     const thumbs = safeImgs.slice(1, 3);
 
@@ -84,11 +88,17 @@ export async function openProductModal(id) {
       mainImg.src = main;
       mainImg.alt = data?.name || 'photo';
     }
+
     if (thumbsWrap) {
       thumbsWrap.innerHTML = thumbs
-        .map(src => `<img class="modal-thumb" src="${src}" alt="${data?.name || 'thumb'}">`)
+        .map(
+          src =>
+            `<img class="modal-thumb" src="${src}" alt="${
+              data?.name || 'thumb'
+            }">`
+        )
         .join('');
-      // перемикання картинок
+
       if (!thumbsWrap.dataset.bound) {
         thumbsWrap.addEventListener('click', e => {
           const img = e.target.closest('.modal-thumb');
@@ -101,7 +111,7 @@ export async function openProductModal(id) {
       }
     }
 
-    // текстові поля
+    // Текстові дані
     if (titleEl) titleEl.textContent = data?.name || '';
     if (catEl) catEl.textContent = data?.category?.name || 'Без категорії';
     if (priceEl) priceEl.textContent = `${data?.price ?? 0} грн`;
@@ -109,7 +119,7 @@ export async function openProductModal(id) {
     if (descEl) descEl.textContent = data?.description || 'Опис відсутній';
     if (sizeEl) sizeEl.textContent = `Розміри: ${data?.sizes || '—'}`;
 
-    // кольори
+    // Кольори
     if (colorsWrap) {
       const colors = Array.isArray(data?.color) ? data.color : [];
       colorsWrap.innerHTML = colors
@@ -122,7 +132,7 @@ export async function openProductModal(id) {
         .join('');
     }
 
-    // закриття
+    // Закриття
     if (btnClose) btnClose.onclick = closeProductModal;
 
     backdropHandler = e => {
@@ -135,101 +145,97 @@ export async function openProductModal(id) {
     };
     document.addEventListener('keydown', escHandler);
 
+    // Кнопка "Перейти до замовлення"
     if (orderBtn) {
       orderBtn.onclick = () => {
-        const checked = productModal.querySelector('input[name="color"]:checked');
+        const checked = productModal.querySelector(
+          'input[name="color"]:checked'
+        );
         const color = checked ? checked.value : null;
-        openOrderModal(id, color);
+        openOrderModal(id, null, color);
         closeProductModal();
       };
     }
 
-    // фокус
     if (dialog) {
       dialog.setAttribute('tabindex', '-1');
       dialog.focus({ preventScroll: true });
     }
   } catch (e) {
+    console.error('❌ Помилка завантаження товару', e);
     closeProductModal();
-    showError(e);
-    closeModal();
-  } finally {
-    hideLoader();
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to load product data.',
+      position: 'topRight',
+    });
   }
 }
 
 function closeProductModal() {
-  const active = document.activeElement;
-  if (active && productModal.contains(active)) active.blur();
-
   productModal.classList.add('visuallyhidden');
-  productModal.setAttribute('aria-hidden', 'true');   // <— ставимо aria-hidden
   document.body.classList.remove('modal-open');
-
-  if (escHandler) { document.removeEventListener('keydown', escHandler); escHandler = null; }
-  if (backdropHandler) { productModal.removeEventListener('mousedown', backdropHandler); backdropHandler = null; }
+  if (escHandler) {
+    document.removeEventListener('keydown', escHandler);
+    escHandler = null;
+  }
+  if (backdropHandler) {
+    productModal.removeEventListener('mousedown', backdropHandler);
+    backdropHandler = null;
+  }
 }
 
-// ====== Друга модалка (замовлення) ======
+// ===== Друга модалка (замовлення) =====
+// Елементи
 const backdropOrderModal = document.querySelector('.backdrop');
-const orderDialog = document.querySelector('.order-modal');
-const closeOrderBtn = document.querySelector('.modal-close-btn');
-const submitBtn = document.querySelector('.modal-submit-btn');
-const orderForm = document.querySelector('.modal-order-form');
+const modalOrder = document.querySelector('.order-modal');
+const closeOrderBtn = modalOrder.querySelector('.modal-close-btn'); 
+const submitBtn = modalOrder.querySelector('.modal-submit-btn');
+const orderForm = modalOrder.querySelector('.modal-order-form');
 
-let currentModelId = null; 
-let currentColor = null;   
+closeOrderBtn.addEventListener('click', async () => {
+  await closeOrderModal();
+});
 
-function lockBody() {
-  document.body.classList.add('modal-open');
-}
-function unlockBody() {
-  document.body.classList.remove('modal-open');
-}
+let currentModelId = null;
+let currentColor = null;
 
 function handleOrderEsc(e) {
   if (e.key === 'Escape') closeOrderModal();
 }
 
-export async function openOrderModal(modelId, color) {
+export async function openOrderModal(modelId, marker, color) {
   currentModelId = modelId ?? null;
   currentColor = color ?? null;
 
   backdropOrderModal.classList.add('is-open');
-  backdropOrderModal.removeAttribute('aria-hidden');   // <—
-  lockBody();
-
-  setTimeout(() => {
-    // фокус у перше поле
-    orderForm?.elements['user-name']?.focus();
-  }, 10);
-
+  document.body.classList.add('modal-open');
   window.addEventListener('keydown', handleOrderEsc);
+
+  // Відновлення полів з localStorage
+  orderForm.querySelectorAll('input, textarea').forEach(f => {
+    const saved = localStorage.getItem(f.name);
+    if (saved) f.value = saved;
+  });
 }
 
 export async function closeOrderModal() {
-
-  const active = document.activeElement;
-  if (active && backdropOrderModal.contains(active)) active.blur();
-
   backdropOrderModal.classList.remove('is-open');
-  backdropOrderModal.setAttribute('aria-hidden', 'true'); // <—
-  unlockBody();
+  document.body.classList.remove('modal-open');
   window.removeEventListener('keydown', handleOrderEsc);
 }
 
 closeOrderBtn?.addEventListener('click', () => closeOrderModal());
-
 backdropOrderModal?.addEventListener('mousedown', e => {
   if (e.target === backdropOrderModal) closeOrderModal();
 });
 
-// сабміт
+// Сабміт форми
 orderForm?.addEventListener('submit', async e => {
   e.preventDefault();
 
-  const name = orderForm.elements['user-name']?.value.trim() || '';
-  const phone = orderForm.elements['phone']?.value.trim() || '';
+  const name = orderForm.elements['user-name']?.value.trim();
+  const phone = orderForm.elements['phone']?.value.trim();
   const comment = orderForm.elements['user-comment']?.value.trim() || '';
 
   if (!name || !phone) {
@@ -241,19 +247,10 @@ orderForm?.addEventListener('submit', async e => {
     return;
   }
 
-  // обов'язкові для бекенду:
   if (!currentModelId) {
     iziToast.warning({
       title: 'Увага',
-      message: 'Оберіть товар (відкрийте картку і натисніть “Перейти до замовлення”).',
-      position: 'topRight',
-    });
-    return;
-  }
-  if (!currentColor) {
-    iziToast.warning({
-      title: 'Увага',
-      message: 'Оберіть колір у картці товару перед замовленням.',
+      message: 'Оберіть товар перед замовленням.',
       position: 'topRight',
     });
     return;
@@ -274,28 +271,24 @@ orderForm?.addEventListener('submit', async e => {
     name,
     phone: clearPhone,
     comment,
-    modelId: currentModelId, 
-    color: currentColor,     
+    modelId: currentModelId,
+    color: currentColor,
   };
 
   submitBtn.disabled = true;
 
   try {
     const res = await axios.post('/orders', payload);
-
     iziToast.success({
       title: 'Успішно',
       message: 'Ваше замовлення відправлено!',
       position: 'topRight',
       timeout: 3000,
     });
-
     orderForm.reset();
-    // очистимо LS, якщо зберігали поля
-    orderForm.querySelectorAll('input, textarea').forEach(f => {
-      localStorage.removeItem(f.name);
-    });
-
+    orderForm.querySelectorAll('input, textarea').forEach(f =>
+      localStorage.removeItem(f.name)
+    );
     closeOrderModal();
   } catch (error) {
     const msg =
@@ -306,21 +299,15 @@ orderForm?.addEventListener('submit', async e => {
       message: msg,
       position: 'topRight',
     });
-    // форму не закриваємо
   } finally {
     submitBtn.disabled = false;
   }
 });
 
-// збереження полів у localStorage
-function onFieldInput(e) {
-  const f = e.target;
-  if (!f?.name) return;
-  localStorage.setItem(f.name, f.value);
-}
+// Збереження полів у localStorage
 orderForm?.querySelectorAll('input, textarea').forEach(f => {
-  f.addEventListener('input', onFieldInput);
-  const saved = localStorage.getItem(f.name);
-  if (saved) f.value = saved;
+  f.addEventListener('input', e => {
+    const field = e.target;
+    localStorage.setItem(field.name, field.value);
+  });
 });
-
