@@ -2,7 +2,7 @@
   <!-- Стрілка вліво -->
   <symbol id="icon-arrow-left" viewBox="0 0 24 24">
     <path
-      d="M14 6 L8 12 L14 18 M8 12 H20"
+      d="M12 6 L6 12 L12 18 M6 12 H18"
       stroke="currentColor"
       stroke-width="2"
       fill="none"
@@ -14,7 +14,7 @@
   <!-- Стрілка вправо -->
   <symbol id="icon-arrow-right" viewBox="0 0 24 24">
     <path
-      d="M10 6 L16 12 L10 18 M16 12 H4"
+      d="M12 6 L18 12 L12 18 M18 12 H6"
       stroke="currentColor"
       stroke-width="2"
       fill="none"
