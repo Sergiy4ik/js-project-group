@@ -1,5 +1,5 @@
 import iziToast from 'izitoast';
-import "izitoast/dist/css/iziToast.min.css";
+import 'izitoast/dist/css/iziToast.min.css';
 import refs from './refs';
 
 export function showLoadMoreBtn() {
@@ -54,7 +54,7 @@ export function showWarning(message) {
 
 export function showError(error) {
   iziToast.error({
-    message: error,
+    message: error.message,
   });
 }
 
