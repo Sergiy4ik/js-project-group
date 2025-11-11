@@ -8,8 +8,10 @@
 }
 
 .feedback-container {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
 }
 
 .feedbacks-container-title {
