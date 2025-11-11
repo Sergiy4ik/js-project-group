@@ -58,6 +58,7 @@ function getRefs(root) {
 
 export async function openProductModal(id) {
   try {
+    showLoader();
     document.body.classList.add('modal-open');
     productModal.classList.remove('visuallyhidden');
 
@@ -164,6 +165,8 @@ export async function openProductModal(id) {
     }
   } catch (error) {
     showError(error);
+  } finally {
+    hideLoader();
   }
 }
 

@@ -2,7 +2,7 @@ import {
   clearFurnitures,
   renderCategories,
   renderFurnitures,
-} from './render-function';
+} from './render-function.js';
 import {
   getFurnitures,
   getCategories,
@@ -25,8 +25,6 @@ let currentPage = 1;
 let currentCategory = '';
 
 export async function initialHome() {
-  showWarning('message');
-
   try {
     showLoader();
     const categories = await getCategories();

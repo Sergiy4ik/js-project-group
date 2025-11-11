@@ -7,6 +7,7 @@ import {
 } from './js/handlers.js';
 import { initFeedbacks } from './js/feedback.js';
 import './js/burger-menu.js';
+import { showError, showInfo, showLoader, showWarning } from './js/helpers.js';
 
 window.addEventListener('load', () => {
   requestAnimationFrame(() => {

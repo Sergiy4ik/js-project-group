@@ -29,7 +29,7 @@ export function roundRating(rating) {
 iziToast.settings({
   position: 'topRight',
   displayMode: 'replace',
-  timeout: 6000,
+  timeout: 4000,
   progressBar: false,
 });
 
@@ -51,9 +51,9 @@ export function showWarning(message) {
   });
 }
 
-export function showError(message) {
+export function showError(error) {
   iziToast.error({
-    message: message,
+    message: error,
   });
 }
 
