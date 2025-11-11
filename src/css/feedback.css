@@ -271,8 +271,19 @@
   }
 }
 
+@media only screen and (min-width: 375px) and (max-width: 767.98px) {
+    .feedback {
+        max-width: 375px;
+    }
+
+    .feedback-container {
+        max-width: 100%;
+    }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 1439.98px) {
     .feedback {
+        max-width: 768px;
         padding: 48px 32px;
     }
     .feedbacks-container-title {
@@ -300,3 +311,5 @@
         padding: 80px 64px;
     }
 }
+
+
