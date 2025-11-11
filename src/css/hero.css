@@ -83,9 +83,10 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 160%;
+  color: #fff;
   font-family: "Raleway", sans-serif;
   margin: 0 0 32px;
-  opacity: 0.6;
+
 }
 
 @media (max-width:767px) {
@@ -125,5 +126,5 @@
   font-size: 16px;
   line-height: 160%;
   text-align: center;
-  opacity: 0.6;
+
 }
