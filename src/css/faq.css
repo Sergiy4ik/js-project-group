@@ -2,6 +2,7 @@
   padding: 48px 20px;
   min-width: 335px;
   margin: 0 auto;
+  background-color: #ffffff;
 }
 
 .faq h2 {
@@ -11,25 +12,29 @@
   letter-spacing: 0.01em;
   text-align: center;
   margin-bottom: 32px;
+  color: #080c09;
 }
 
 .accordion-container {
   display: flex;
   flex-direction: column;
-  gap: 0px;
+  gap: 16px;
 }
 
 .ac {
-  border: none;
-  border-bottom: 1px solid rgba(8, 12, 9, 0.15);
+  border: none !important;
+  border-bottom: none !important;
   overflow: hidden;
   transition: all 0.3s ease;
-  margin: 0;
-  padding: 22px 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #ffffff !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
 }
 
 .ac:first-child {
-  border-top: 1px solid rgba(8, 12, 9, 0.15);
+  border-top: none !important;
 }
 
 .ac-header {
@@ -41,18 +46,20 @@
 
 .ac-trigger {
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: flex !important;
+  justify-content: space-between !important;
   align-items: center;
-  width: 100%;
-  padding: 0 56px 0 0;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.2;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-  text-align: left;
+  width: 100% !important;
+  padding: clamp(16px, 2.5vw, 24px) clamp(20px, 3vw, 32px) !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  text-align: left !important;
+  color: #080c09 !important;
+  transition: color 0.3s ease !important;
 }
 
 .ac-trigger::after {
@@ -60,39 +67,46 @@
 }
 
 .ac .ac-trigger {
-  color: #080c09;
-  transition: color 0.3s ease;
+  color: #080c09 !important;
+  transition: color 0.3s ease !important;
 }
 
 .ac.is-active .ac-trigger {
-  color: #080c09;
+  color: #080c09 !important;
 }
 
 .ac-icon {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  transform: none !important;
+  transition: transform 0.3s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
 }
 
 .ac.is-active .ac-trigger::after {
-  transform: translateY(-50%) rotate(180deg);
+  transform: rotate(180deg) !important;
 }
 
 .ac-panel {
-  overflow: hidden;
-  transition: height 0.3s ease;
-  background-color: #fff;
-  padding: 0 56px 0 0;
+  overflow: hidden !important;
+  transition: height 0.3s ease !important;
+  background-color: transparent !important;
+  padding: 0 clamp(20px, 3vw, 32px) clamp(16px, 2.5vw, 24px)
+    clamp(20px, 3vw, 32px) !important;
+  box-sizing: border-box !important;
 }
 
 .ac-text {
-  margin: 0;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 160%;
-  color: #080C09;
+  margin: 0 !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 160% !important;
+  color: #080c09 !important;
 }
 
 @media screen and (min-width: 768px) {

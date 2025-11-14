@@ -101,6 +101,16 @@
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-scheme-1-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-label::after {
+  content: attr(data-hint);
+  font-size: 12px;
+  color: #999;
+  font-weight: 400;
 }
 
 .modal-input,
@@ -111,21 +121,25 @@ textarea {
   width: 100%;
   height: 42px;
   background: var(--opacity-neutral-darkest-5);
+  transition: border-color 250ms ease, background-color 250ms ease;
 }
 
 .modal-input:hover,
 textarea:hover {
   color: var(--color-scheme-1-text);
   border-color: var(--opacity-neutral-darkest-15);
+  background: rgba(8, 12, 9, 0.08);
 }
 
 .modal-input:active,
 .modal-input:focus-visible,
 textarea:active,
 textarea:focus-visible {
-  border-color: var(--opacity-neutral-darkest-40);
+  border-color: #6b0609;
   color: var(--color-scheme-1-text);
   outline: none;
+  background: rgba(107, 6, 9, 0.02);
+  box-shadow: 0 0 0 3px rgba(107, 6, 9, 0.1);
 }
 
 .modal-field.comment textarea {

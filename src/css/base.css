@@ -24,12 +24,12 @@
 
 /* Dark theme */
 [data-theme='dark'] {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
-  --header-bg: #2a2a2a;
+  --bg-color: #2d2d2d;
+  --text-color: #e8d5c8;
+  --header-bg: #3d3d3d;
   --logo-fill: white;
-  --accent-color: #8b0d11;
-  --border-color: rgba(255, 255, 255, 0.1);
+  --accent-color: #6b0609;
+  --border-color: rgba(255, 255, 255, 0.15);
 }
 
 body {

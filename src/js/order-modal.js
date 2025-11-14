@@ -1,4 +1,10 @@
-import { hideLoader, showError, showLoader, showSuccess, showWarning } from './helpers';
+import {
+  hideLoader,
+  showError,
+  showLoader,
+  showSuccess,
+  showWarning,
+} from './helpers';
 import refs from './refs';
 import { createOrder } from './products-api';
 
@@ -20,24 +26,49 @@ function validateForm(name, phone) {
     return false;
   }
 
-  // Видаляємо всі символи, крім цифр та "+"
-  const cleanPhone = phone.replace(/[^\d+]/g, '');
-  
-  // Перевіряємо формат: опціональний "+" на початку, потім від 9 до 15 цифр
-  // Дозволяємо формати:
-  // - +380123456789 (з + та країнним кодом)
-  // - 380123456789 (без +, але з країнним кодом)
-  // - 0123456789 (локальний формат)
-  // - +1234567890 (міжнародний формат)
-  const phonePattern = /^\+?\d{9,15}$/;
+  // Видаляємо всі символи, крім цифр
+  let cleanPhone = phone.replace(/\D/g, '');
 
-  if (!phonePattern.test(cleanPhone)) {
-    showWarning('Enter a valid phone number (9-15 digits, optional + at start).');
+  // Перевіряємо мінімальну довжину
+  if (cleanPhone.length < 10) {
+    showWarning('Enter a valid phone number (at least 10 digits).');
     return false;
   }
 
-  // Повертаємо номер як є (з "+" якщо він був)
-  return cleanPhone;
+  // Якщо номер починається з 0 (локальний формат України), додаємо код країни 38
+  if (cleanPhone.startsWith('0')) {
+    cleanPhone = '38' + cleanPhone;
+  }
+
+  // Якщо номер починається з 38, залишаємо як є
+  // Якщо номер не починається з 38 і не є локальним форматом, припускаємо що це не український номер
+  // У такому випадку повертаємо помилку або додаємо 38 (залежить від потреб)
+
+  // Перевіряємо формат: 12 цифр для українських номерів (38XXXXXXXXXX)
+  // або іші 10+ цифр для інших форматів
+  if (cleanPhone.length !== 12 && !cleanPhone.match(/^\d{10,15}$/)) {
+    showWarning(
+      'Enter a valid phone number in format: +38 (0XX) XXX-XX-XX or 380XXXXXXXXX'
+    );
+    return false;
+  }
+
+  // Для API потрібен формат 12 цифр: 380XXXXXXXXX
+  if (cleanPhone.length === 12 && cleanPhone.match(/^\d{12}$/)) {
+    return cleanPhone;
+  }
+
+  // Якщо номер відповідає мінімальним вимогам, але не рівно 12 цифр
+  if (cleanPhone.length >= 10 && cleanPhone.length <= 15) {
+    // Повертаємо перші 12 цифр або весь номер, залежно від довжини
+    if (cleanPhone.length > 12) {
+      return cleanPhone.substring(0, 12);
+    }
+    return cleanPhone;
+  }
+
+  showWarning('Enter a valid phone number.');
+  return false;
 }
 
 export function setupOrderFormStorage() {
@@ -58,7 +89,7 @@ export function setupOrderFormStorage() {
 
 export async function handleOrderFormSubmit(e) {
   e.preventDefault();
-  
+
   const name = refs.orderForm.elements['user-name']?.value.trim();
   const phone = refs.orderForm.elements['user-phone']?.value.trim();
   const comment = refs.orderForm.elements['user-comment']?.value.trim() || '';
@@ -91,14 +122,17 @@ export async function handleOrderFormSubmit(e) {
   }
 }
 
-import { setupOrderModalListeners, removeOrderModalListeners } from './event-listeners';
+import {
+  setupOrderModalListeners,
+  removeOrderModalListeners,
+} from './event-listeners';
 
 export async function openOrderModal(modelId, marker, color) {
   document.body.classList.add('modal-open');
   currentModelId = modelId ?? null;
   currentColor = color ?? null;
   refs.backdropOrderModal.classList.add('is-open');
-  
+
   restoreFormFromStorage();
   setupOrderModalListeners();
 }
@@ -124,4 +158,3 @@ export function restoreFormFromStorage() {
     }
   }
 }
-

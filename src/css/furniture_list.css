@@ -170,7 +170,7 @@
   height: 46px;
   box-shadow: 0 1px 2px 0 rgba(8, 12, 9, 0.05),
     inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05),
-    inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+    inset 0 0 0 1px rgba(8, 12, 9, 0.05), 0 2px 4px 0 rgba(8, 12, 9, 0.1);
   background: rgba(8, 12, 9, 0.05);
   margin-top: auto;
 }
@@ -198,6 +198,11 @@
     inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
   background: #6b0609;
   border: none;
+  pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 1001;
 }
 
 .load-more-btn:hover,
@@ -207,6 +212,12 @@
 
 .load-more-btn.is-show {
   display: block;
+}
+
+body.modal-open .load-more-btn.is-show {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 @media only screen and (min-width: 768px) {
