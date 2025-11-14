@@ -43,7 +43,6 @@ export function initFeedbackSwiper(totalSlides = 10) {
     pagination: {
       el: refs.feedbackPaginationDots,
       clickable: true,
-      bulletElement: 'li',
       bulletClass: 'feedback-pagination-dot',
       bulletActiveClass: 'active',
       type: 'bullets',
