@@ -1,10 +1,8 @@
 import { hideLoader, showError, showLoader } from './helpers';
-import { openOrderModal } from './order-modal';
 import { getFurnitureByID } from './products-api';
 import refs from './refs';
 import { setupProductModalListeners, removeProductModalListeners } from './event-listeners';
 
-// Утиліти для роботи з рейтингом та зображеннями
 function renderStars(rate = 0) {
   const full = Math.floor(rate);
   const half = rate % 1 >= 0.5 ? 1 : 0;
@@ -66,8 +64,6 @@ function setupImageGallery(mainImg, thumbsWrap, images, productName) {
         `<img class="modal-thumb" src="${src}" alt="${productName || 'thumb'}">`
     )
     .join('');
-
-  // Обробка кліку на мініатюри буде налаштована в setupProductModalListeners
 }
 
 function setupColors(colorsWrap, colors) {
@@ -96,8 +92,6 @@ function populateProductData(refs, data) {
   if (sizeEl) sizeEl.textContent = `Розміри: ${data?.sizes || '—'}`;
 }
 
-// Обробники подій тепер в event-listeners.js
-
 export async function openProductModal(id) {
   try {
     showLoader();
@@ -107,17 +101,13 @@ export async function openProductModal(id) {
     const data = await getFurnitureByID(id);
     const modalRefs = getProductModalRefs();
 
-    // Обробка зображень
     const images = normalizeImages(data.images || data.image || []);
     setupImageGallery(modalRefs.mainImg, modalRefs.thumbsWrap, images, data?.name);
 
-    // Заповнення даних
     populateProductData(modalRefs, data);
 
-    // Налаштування кольорів
     setupColors(modalRefs.colorsWrap, data?.color);
 
-    // Налаштування обробників подій
     setupProductModalListeners(modalRefs, id);
   } catch (error) {
     showError(error);

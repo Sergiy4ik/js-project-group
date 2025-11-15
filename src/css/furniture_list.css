@@ -202,7 +202,6 @@
   visibility: visible;
   opacity: 1;
   position: relative;
-  z-index: 1001;
 }
 
 .load-more-btn:hover,

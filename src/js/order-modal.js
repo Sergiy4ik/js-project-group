@@ -7,6 +7,10 @@ import {
 } from './helpers';
 import refs from './refs';
 import { createOrder } from './products-api';
+import {
+  setupOrderModalListeners,
+  removeOrderModalListeners,
+} from './event-listeners';
 
 let currentModelId = null;
 let currentColor = null;
@@ -26,26 +30,17 @@ function validateForm(name, phone) {
     return false;
   }
 
-  // Видаляємо всі символи, крім цифр
   let cleanPhone = phone.replace(/\D/g, '');
 
-  // Перевіряємо мінімальну довжину
   if (cleanPhone.length < 10) {
     showWarning('Enter a valid phone number (at least 10 digits).');
     return false;
   }
 
-  // Якщо номер починається з 0 (локальний формат України), додаємо код країни 38
   if (cleanPhone.startsWith('0')) {
     cleanPhone = '38' + cleanPhone;
   }
 
-  // Якщо номер починається з 38, залишаємо як є
-  // Якщо номер не починається з 38 і не є локальним форматом, припускаємо що це не український номер
-  // У такому випадку повертаємо помилку або додаємо 38 (залежить від потреб)
-
-  // Перевіряємо формат: 12 цифр для українських номерів (38XXXXXXXXXX)
-  // або іші 10+ цифр для інших форматів
   if (cleanPhone.length !== 12 && !cleanPhone.match(/^\d{10,15}$/)) {
     showWarning(
       'Enter a valid phone number in format: +38 (0XX) XXX-XX-XX or 380XXXXXXXXX'
@@ -53,14 +48,11 @@ function validateForm(name, phone) {
     return false;
   }
 
-  // Для API потрібен формат 12 цифр: 380XXXXXXXXX
   if (cleanPhone.length === 12 && cleanPhone.match(/^\d{12}$/)) {
     return cleanPhone;
   }
 
-  // Якщо номер відповідає мінімальним вимогам, але не рівно 12 цифр
   if (cleanPhone.length >= 10 && cleanPhone.length <= 15) {
-    // Повертаємо перші 12 цифр або весь номер, залежно від довжини
     if (cleanPhone.length > 12) {
       return cleanPhone.substring(0, 12);
     }
@@ -74,14 +66,12 @@ function validateForm(name, phone) {
 export function setupOrderFormStorage() {
   refs.orderForm.querySelectorAll('input, textarea').forEach(field => {
     field.addEventListener('input', () => {
-      // Збираємо всі дані форми в один об'єкт
       const formData = {};
       refs.orderForm.querySelectorAll('input, textarea').forEach(f => {
         if (f.name) {
           formData[f.name] = f.value;
         }
       });
-      // Зберігаємо весь об'єкт під ключем "order-form"
       localStorage.setItem('order-form', JSON.stringify(formData));
     });
   });
@@ -122,10 +112,6 @@ export async function handleOrderFormSubmit(e) {
   }
 }
 
-import {
-  setupOrderModalListeners,
-  removeOrderModalListeners,
-} from './event-listeners';
 
 export async function openOrderModal(modelId, marker, color) {
   document.body.classList.add('modal-open');
